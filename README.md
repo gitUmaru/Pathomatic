@@ -1,5 +1,4 @@
-# Artificial Intelligence for Precision Medicine in Overian Carcinoma  (AIPMOC)
-
+# Artificial Intelligence for Precision Medicine in Overian Carcinoma
 A new Flutter project.
 
 ## Getting Started
