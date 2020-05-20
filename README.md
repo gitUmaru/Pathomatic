@@ -1,4 +1,4 @@
-# iSPY_Cancer
+# Artificial Intelligence for Precision Medicine in Overian Carcinoma  (AIPMOC)
 
 A new Flutter project.
 
