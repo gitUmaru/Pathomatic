@@ -1,4 +1,4 @@
-# Artificial Intelligence for Precision Medicine in Overian Carcinoma
+# Artificial Intelligence for Precision Medicine in Ovarian Carcinoma
 A new Flutter project.
 
 ## Getting Started
