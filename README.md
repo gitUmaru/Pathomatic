@@ -13,10 +13,7 @@ In progress
 
 
 ### macOS/Linux
-```
-export PATH=/glfw-3.2.1.bin.WIN64/lib-mingw-w64:$PATH
-```
-Note that if you wish to set the PATH for all users, you need to log in as root in the bash shell
+
 
 ## Results
 In progress.
