@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # Detecting Regions of Cancer Using TensorFlow model on Android device
 
+=======
+# Artificial Intelligence for Precision Medicine in Ovarian Carcinoma
+A new Flutter project.
+>>>>>>> 78a92ad6499d1c2c654fe2cb7b0c0fbae735b9ae
 
 ## Packages
 * FLutter
