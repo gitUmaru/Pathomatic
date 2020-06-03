@@ -50,7 +50,7 @@ Lastly add these variables to your Path variables:
 These additions should resemble the image in figure 2.
 
 <p align="center">
-<img src="https://i.imgur.com/AjHFEPB.png" />
+<img src="https://i.imgur.com/y58t4RN.png" />
 </p>
 <p align="center"><b>Figure 2.</b> Path variable list</p>
 
