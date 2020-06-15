@@ -27,22 +27,13 @@ class _DashboardPageState extends State<DashboardPage> {
           title: const Text('Dashboard'),
           leading: IconButton(
             icon: const Icon(Icons.check_circle_outline),
-            tooltip: 'Select',
             onPressed: () {},
           ),
           actions: <Widget>[
-            PopupMenuButton<String>(
-              icon: const Icon(Icons.delete),
-              onSelected: choiceAction1,
-              itemBuilder: (BuildContext context) {
-                return Constants.choices.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              },
-            )
+            IconButton(
+              icon: const Icon(Icons.people_outline),
+              onPressed: () {},
+            ),
           ],
         ),
         body: Center(
@@ -60,7 +51,7 @@ class _DashboardPageState extends State<DashboardPage> {
           color: Colors.grey[200],
           child: new Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               PopupMenuButton<String>(
                 icon: const Icon(Icons.save),
@@ -70,6 +61,18 @@ class _DashboardPageState extends State<DashboardPage> {
                     return PopupMenuItem<String>(
                       value: choice2,
                       child: Text(choice2),
+                    );
+                  }).toList();
+                },
+              ),
+              PopupMenuButton<String>(
+                icon: const Icon(Icons.delete),
+                onSelected: choiceAction1,
+                itemBuilder: (BuildContext context) {
+                  return Constants.choices.map((String choice) {
+                    return PopupMenuItem<String>(
+                      value: choice,
+                      child: Text(choice),
                     );
                   }).toList();
                 },
