@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './main.dart';
 import './dashboard.dart';
+import './patient.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,6 +12,17 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => MyApp());
+      case '/patient':
+        // Validation of correct data type
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => PatientPage(
+              data: args,
+            ),
+          );
+        }
+        return _errorRoute();
+
       case '/dashboard':
         // Validation of correct data type
         if (args is String) {
@@ -20,6 +32,7 @@ class RouteGenerator {
             ),
           );
         }
+
         // If args is not of the correct type, return an error page.
         // You can also throw an exception while in development.
         return _errorRoute();

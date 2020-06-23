@@ -23,7 +23,7 @@ class _DashboardPageState extends State<DashboardPage> {
         appBar: AppBar(
           backgroundColor: Colors.lightBlue,
           centerTitle: true,
-          elevation: 10,
+          elevation: 5,
           title: const Text('Dashboard'),
           leading: IconButton(
             icon: const Icon(Icons.check_circle_outline),
@@ -32,7 +32,12 @@ class _DashboardPageState extends State<DashboardPage> {
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.people_outline),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/patient',
+                  arguments: 'none',
+                );
+              },
             ),
           ],
         ),
