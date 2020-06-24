@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './new_todo.dart';
-import './todo.dart';
+import './new_patient.dart';
+import './patients.dart';
 
 class PatientPage extends StatefulWidget {
   PatientPage({
