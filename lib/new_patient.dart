@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './todo.dart';
+import './patients.dart';
 
 class NewTodoView extends StatefulWidget {
   final Todo item;
