@@ -1,4 +1,4 @@
-name: iSPY_Cancer
+name: testAIPMOC
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -23,10 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  camera:
-  path_provider:
-  path:
-
+  animated_background: ^1.0.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,10 +40,14 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/images/InitialLogo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
