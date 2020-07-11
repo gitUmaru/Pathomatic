@@ -73,7 +73,7 @@ class _CameraScreenState extends State {
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
         elevation: 5,
-        title: const Text('Pathomatic'),
+        title: Image.asset('assets/images/InitialLogo.png'),
       ),
       body: Container(
         decoration: new BoxDecoration(color: Colors.black),
