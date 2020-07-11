@@ -76,13 +76,29 @@ class _CameraScreenState extends State {
         title: const Text('Pathomatic'),
       ),
       body: Container(
+        decoration: new BoxDecoration(color: Colors.black),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
                 flex: 2,
-                child: _cameraPreviewWidget(context),
+                child: new Stack(
+                  children: <Widget>[
+                    new Container(
+                      alignment: Alignment.center,
+                      child: _cameraPreviewWidget(context),
+                    ),
+                    new Align(
+                      alignment: Alignment.center,
+                      child: new Container(
+                        height: MediaQuery.of(context).size.height / 3,
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Image.asset('assets/images/crosshair.png'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10.0,
@@ -160,9 +176,11 @@ class _CameraScreenState extends State {
         alignment: Alignment.centerLeft,
         child: FlatButton.icon(
             onPressed: _onSwitchCamera,
-            icon: Icon(_getCameraLensIcon(lensDirection)),
+            icon: Icon(_getCameraLensIcon(lensDirection), color: Colors.white),
             label: Text(
-                "${lensDirection.toString().substring(lensDirection.toString().indexOf('.') + 1)}")),
+              "${lensDirection.toString().substring(lensDirection.toString().indexOf('.') + 1)}",
+              style: TextStyle(color: Colors.white),
+            )),
       ),
     );
   }

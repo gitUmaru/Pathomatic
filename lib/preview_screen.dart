@@ -24,29 +24,33 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
         backgroundColor: Colors.lightBlue,
       ),
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-                flex: 2,
-                child: Image.file(File(widget.imagePath), fit: BoxFit.cover)),
-            SizedBox(height: 10.0),
-            Flexible(
-              flex: 0,
-              child: Container(
-                padding: EdgeInsets.all(60),
-                child: RaisedButton(
-                  onPressed: () {
-                    getBytesFromFile().then((bytes) {
-                      Share.file('Share via:', basename(widget.imagePath),
-                          bytes.buffer.asUint8List(), 'image/png');
-                    });
-                  },
-                  child: Text('Share'),
-                ),
+        decoration: new BoxDecoration(color: Colors.black),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                  flex: 2,
+                  child: Image.file(File(widget.imagePath), fit: BoxFit.cover)),
+              SizedBox(height: 5),
+              Flexible(
+                flex: 0,
+                child: Container(
+                    padding: EdgeInsets.all(20),
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        getBytesFromFile().then((bytes) {
+                          Share.file('Share via:', basename(widget.imagePath),
+                              bytes.buffer.asUint8List(), 'image/png');
+                        });
+                      },
+                      label: Text('Share'),
+                      icon: Icon(Icons.share),
+                      backgroundColor: Colors.lightBlue,
+                    )),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

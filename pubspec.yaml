@@ -52,6 +52,7 @@ flutter:
 
   assets:
     - assets/images/InitialLogo.png
+    - assets/images/crosshair.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
