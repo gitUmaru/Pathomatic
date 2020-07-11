@@ -36,7 +36,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
               Flexible(
                 flex: 0,
                 child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(10),
                     child: FloatingActionButton.extended(
                       onPressed: () {
                         getBytesFromFile().then((bytes) {
