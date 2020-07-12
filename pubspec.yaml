@@ -26,7 +26,7 @@ dependencies:
   camera:
   path_provider:
   path:
-  tflite:
+  tflite: 1.0.6
   animated_background: ^1.0.5
 
 
