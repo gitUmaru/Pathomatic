@@ -70,11 +70,10 @@ class _CameraScreenState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        centerTitle: true,
-        elevation: 5,
-        title: Image.asset('assets/images/InitialLogo.png'),
-      ),
+          backgroundColor: Colors.lightBlue,
+          centerTitle: true,
+          elevation: 5,
+          title: Text("Pathomatic")),
       body: Container(
         decoration: new BoxDecoration(color: Colors.black),
         child: SafeArea(
