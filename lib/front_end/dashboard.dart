@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../back_end/constants.dart';
 
+import 'package:camera/camera.dart';
+List<CameraDescription> cameras;
+
 class DashboardPage extends StatefulWidget {
   DashboardPage({
     Key key,
@@ -49,7 +52,13 @@ class _DashboardPageState extends State<DashboardPage> {
           backgroundColor: Colors.lightBlue,
           icon: const Icon(Icons.add),
           label: const Text('Add a photo'),
-          onPressed: () {},
+          onPressed: () {
+            // Pushing a named route
+            Navigator.of(context).pushNamed(
+              '/homepage',
+              arguments: cameras,
+            );
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomAppBar(

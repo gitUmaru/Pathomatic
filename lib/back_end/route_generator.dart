@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:Pathomatic/front_end/home.dart';
+import 'package:camera/camera.dart';
 
 import '../main.dart';
 import '../front_end/dashboard.dart';
 import 'patient_functionality/patient.dart';
+
+ List<CameraDescription> cameras;
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -30,6 +35,19 @@ class RouteGenerator {
             builder: (_) => DashboardPage(
               data: args,
             ),
+          );
+        }
+
+        // If args is not of the correct type, return an error page.
+        // You can also throw an exception while in development.
+        return _errorRoute();
+
+        case '/homepage':
+        // Validation of correct data type
+        if (args is  List<CameraDescription>) {
+          return MaterialPageRoute(
+            builder: (_) => HomePage(
+              cameras: args),
           );
         }
 

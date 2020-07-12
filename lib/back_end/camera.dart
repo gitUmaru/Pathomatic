@@ -27,6 +27,7 @@ class _CameraState extends State<Camera> {
     super.initState();
 
     if (widget.cameras == null || widget.cameras.length < 1) {
+      print(widget.cameras);
       print('No camera is found');
     } else {
       controller = new CameraController(

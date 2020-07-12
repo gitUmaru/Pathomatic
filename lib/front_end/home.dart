@@ -8,9 +8,12 @@ import '../back_end/bndbox.dart';
 import '../back_end/models.dart';
 
 class HomePage extends StatefulWidget {
-  final List<CameraDescription> cameras;
+  HomePage({
+    Key key,
+    @required this.cameras,
+  }) : super(key: key);
 
-  HomePage(this.cameras);
+  final  List<CameraDescription> cameras;
 
   @override
   _HomePageState createState() => new _HomePageState();
@@ -81,20 +84,24 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   RaisedButton(
-                    child: const Text(ssd),
+                    child: const Text('4x Magnification'),
                     onPressed: () => onSelect(ssd),
                   ),
                   RaisedButton(
-                    child: const Text(yolo),
+                    child: const Text('10x Magnification'),
                     onPressed: () => onSelect(yolo),
                   ),
                   RaisedButton(
-                    child: const Text(mobilenet),
+                    child: const Text('25x Magnification'),
                     onPressed: () => onSelect(mobilenet),
                   ),
                   RaisedButton(
-                    child: const Text(posenet),
+                    child: const Text('40x Magnification'),
                     onPressed: () => onSelect(posenet),
+                  ),
+                  RaisedButton(
+                    child: const Text('63x Magnification'),
+                    onPressed: () => onSelect(mobilenet),
                   ),
                 ],
               ),
