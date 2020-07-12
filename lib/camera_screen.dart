@@ -178,7 +178,7 @@ class _CameraScreenState extends State {
             onPressed: _onSwitchCamera,
             icon: Icon(_getCameraLensIcon(lensDirection), color: Colors.white),
             label: Text(
-              "${lensDirection.toString().substring(lensDirection.toString().indexOf('.') + 1)}",
+              "${lensDirection.toString().toUpperCase().substring(lensDirection.toString().indexOf('.') + 1)}",
               style: TextStyle(color: Colors.white),
             )),
       ),
