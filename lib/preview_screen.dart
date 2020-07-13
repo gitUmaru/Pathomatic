@@ -1,7 +1,11 @@
 import 'dart:io';
+
 import 'dart:typed_data';
+
 import 'package:esys_flutter_share/esys_flutter_share.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:path/path.dart';
 
 class PreviewImageScreen extends StatefulWidget {
@@ -58,6 +62,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
 
   Future<ByteData> getBytesFromFile() async {
     Uint8List bytes = File(widget.imagePath).readAsBytesSync() as Uint8List;
+
     return ByteData.view(bytes.buffer);
   }
 }
