@@ -1,3 +1,4 @@
+import 'package:Pathomatic/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Pathomatic/front_end/home.dart';
 import 'package:camera/camera.dart';
@@ -44,16 +45,16 @@ class RouteGenerator {
 
         case '/homepage':
         // Validation of correct data type
-        if (args is  List<CameraDescription>) {
           return MaterialPageRoute(
-            builder: (_) => HomePage(
-              cameras: args),
+            builder: (_) => HomePage(cameras),
           );
-        }
 
-        // If args is not of the correct type, return an error page.
-        // You can also throw an exception while in development.
-        return _errorRoute();
+        case '/camerapage':
+        // Validation of correct data type
+          return MaterialPageRoute(
+            builder: (_) => CameraScreen(),
+          );
+
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
