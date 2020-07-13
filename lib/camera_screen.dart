@@ -100,7 +100,8 @@ class _CameraScreenState extends State {
                     new Align(
                       alignment: Alignment.center,
                       child: new Container(
-                        height: MediaQuery.of(context).size.height / 3,
+                        padding: 50,
+                        height: MediaQuery.of(context).size.height / 4,
                         width: MediaQuery.of(context).size.width / 3,
                         child: Image.asset('assets/images/crosshair.png'),
                       ),
