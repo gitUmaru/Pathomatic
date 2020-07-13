@@ -10,8 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CameraScreen(),
+      title: 'Pathomatic',
+      home: WelcomePage(),
+      // Initially display WelcomePage
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
-
