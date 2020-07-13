@@ -23,9 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  camera:
-  path_provider:
-  path:
   tflite: 1.0.6
   animated_background: ^1.0.5
   camera: ^0.5.2+1

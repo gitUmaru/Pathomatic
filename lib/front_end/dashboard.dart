@@ -55,7 +55,7 @@ class _DashboardPageState extends State<DashboardPage> {
           onPressed: () {
             // Pushing a named route
             Navigator.of(context).pushNamed(
-              '/homepage',
+              '/camerapage',
               arguments: cameras,
             );
           },
