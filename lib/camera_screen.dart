@@ -1,7 +1,11 @@
 import 'package:camera/camera.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:path/path.dart';
+
 import 'package:path_provider/path_provider.dart';
+
 import './preview_screen.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -13,13 +17,17 @@ class CameraScreen extends StatefulWidget {
 
 class _CameraScreenState extends State {
   CameraController controller;
+
   List cameras;
+
   int selectedCameraIdx;
+
   String imagePath;
 
   @override
   void initState() {
     super.initState();
+
     availableCameras().then((availableCameras) {
       cameras = availableCameras;
 
@@ -45,6 +53,7 @@ class _CameraScreenState extends State {
     controller = CameraController(cameraDescription, ResolutionPreset.high);
 
     // If the controller is updated then update the UI.
+
     controller.addListener(() {
       if (mounted) {
         setState(() {});
@@ -70,11 +79,10 @@ class _CameraScreenState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        centerTitle: true,
-        elevation: 5,
-        title: Image.asset('assets/images/InitialLogo.png'),
-      ),
+          backgroundColor: Colors.lightBlue,
+          centerTitle: true,
+          elevation: 5,
+          title: Text("Pathomatic")),
       body: Container(
         decoration: new BoxDecoration(color: Colors.black),
         child: SafeArea(
@@ -120,12 +128,14 @@ class _CameraScreenState extends State {
   }
 
   /// Display Camera preview.
+
   Widget _cameraPreviewWidget(context) {
     final size = MediaQuery.of(context).size;
 
     if (!controller.value.isInitialized) {
       return Container();
     }
+
     return ClipRect(
       child: Container(
         child: Transform.scale(
@@ -142,6 +152,7 @@ class _CameraScreenState extends State {
   }
 
   /// Display the control bar with buttons to take pictures
+
   Widget _captureControlRowWidget(context) {
     return Expanded(
       child: Align(
@@ -163,12 +174,14 @@ class _CameraScreenState extends State {
   }
 
   /// Display a row of toggle to select the camera (or a message if no camera is available).
+
   Widget _cameraTogglesRowWidget() {
     if (cameras == null || cameras.isEmpty) {
       return Spacer();
     }
 
     CameraDescription selectedCamera = cameras[selectedCameraIdx];
+
     CameraLensDirection lensDirection = selectedCamera.lensDirection;
 
     return Expanded(
@@ -178,7 +191,7 @@ class _CameraScreenState extends State {
             onPressed: _onSwitchCamera,
             icon: Icon(_getCameraLensIcon(lensDirection), color: Colors.white),
             label: Text(
-              "${lensDirection.toString().substring(lensDirection.toString().indexOf('.') + 1)}",
+              "${lensDirection.toString().toUpperCase().substring(lensDirection.toString().indexOf('.') + 1)}",
               style: TextStyle(color: Colors.white),
             )),
       ),
@@ -189,10 +202,13 @@ class _CameraScreenState extends State {
     switch (direction) {
       case CameraLensDirection.back:
         return Icons.camera_rear;
+
       case CameraLensDirection.front:
         return Icons.camera_front;
+
       case CameraLensDirection.external:
         return Icons.camera;
+
       default:
         return Icons.device_unknown;
     }
@@ -201,25 +217,36 @@ class _CameraScreenState extends State {
   void _onSwitchCamera() {
     selectedCameraIdx =
         selectedCameraIdx < cameras.length - 1 ? selectedCameraIdx + 1 : 0;
+
     CameraDescription selectedCamera = cameras[selectedCameraIdx];
+
     _initCameraController(selectedCamera);
   }
 
   void _onCapturePressed(context) async {
     // Take the Picture in a try / catch block. If anything goes wrong,
+
     // catch the error.
+
     try {
       // Attempt to take a picture and log where it's been saved
+
       final path = join(
         // In this example, store the picture in the temp directory. Find
+
         // the temp directory using the `path_provider` plugin.
+
         (await getTemporaryDirectory()).path,
+
         '${DateTime.now()}.png',
       );
+
       print(path);
+
       await controller.takePicture(path);
 
       // If the picture was taken, display it on a new screen
+
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -228,12 +255,14 @@ class _CameraScreenState extends State {
       );
     } catch (e) {
       // If an error occurs, log the error to the console.
+
       print(e);
     }
   }
 
   void _showCameraException(CameraException e) {
     String errorText = 'Error: ${e.code}\nError Message: ${e.description}';
+
     print(errorText);
 
     print('Error: ${e.code}\n${e.description}');
