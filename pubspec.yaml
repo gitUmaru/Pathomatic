@@ -28,6 +28,10 @@ dependencies:
   path:
   tflite: 1.0.6
   animated_background: ^1.0.5
+  camera: ^0.5.2+1
+  path_provider: ^1.1.0
+  path: ^1.6.2
+  esys_flutter_share: ^1.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,11 +64,13 @@ flutter:
     - assets/mobilenet_v1_1.0_224.tflite
     - assets/mobilenet_v1_1.0_224.txt
     - assets/posenet_mv1_075_float_from_checkpoints.tflite
+    - assets/images/crosshair.png
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/icon.png"
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
