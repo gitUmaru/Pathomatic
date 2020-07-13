@@ -8,16 +8,14 @@ import '../back_end/bndbox.dart';
 import '../back_end/models.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({
-    Key key,
-    @required this.cameras,
-  }) : super(key: key);
+  final List<CameraDescription> cameras;
 
-  final  List<CameraDescription> cameras;
+  HomePage(this.cameras);
 
   @override
   _HomePageState createState() => new _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
   List<dynamic> _recognitions;
