@@ -70,11 +70,10 @@ class _CameraScreenState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        centerTitle: true,
-        elevation: 5,
-        title: Image.asset('assets/images/InitialLogo.png'),
-      ),
+          backgroundColor: Colors.lightBlue,
+          centerTitle: true,
+          elevation: 5,
+          title: Text("Pathomatic")),
       body: Container(
         decoration: new BoxDecoration(color: Colors.black),
         child: SafeArea(
@@ -178,7 +177,7 @@ class _CameraScreenState extends State {
             onPressed: _onSwitchCamera,
             icon: Icon(_getCameraLensIcon(lensDirection), color: Colors.white),
             label: Text(
-              "${lensDirection.toString().substring(lensDirection.toString().indexOf('.') + 1)}",
+              "${lensDirection.toString().toUpperCase().substring(lensDirection.toString().indexOf('.') + 1)}",
               style: TextStyle(color: Colors.white),
             )),
       ),
