@@ -100,7 +100,7 @@ class _CameraScreenState extends State {
                     new Align(
                       alignment: Alignment.center,
                       child: new Container(
-                        padding: EdgeInsets.only(top: 200.0, left: 20.0),
+                        // padding: EdgeInsets.only(top: 200.0, left: 20.0),
                         height: MediaQuery.of(context).size.height / 3,
                         width: MediaQuery.of(context).size.width / 3,
                         child: Image.asset('assets/images/crosshair.png'),
@@ -195,7 +195,7 @@ class _CameraScreenState extends State {
             onPressed: _onSwitchCamera,
             icon: Icon(_getCameraLensIcon(lensDirection), color: Colors.white),
             label: Text(
-              "10x Magnification",
+              "10x",
               // "${lensDirection.toString().toUpperCase().substring(lensDirection.toString().indexOf('.') + 1)}",
               style: TextStyle(color: Colors.white),
             )),

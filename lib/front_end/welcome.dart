@@ -73,7 +73,7 @@ class _WelcomePageState extends State<WelcomePage>
                                                 child: Icon(
                                                   Icons.photo_camera,
                                                   color: Colors.white,
-                                                  size: 30,
+                                                  size: 20,
                                                 ),
                                               ),
                                             ],
