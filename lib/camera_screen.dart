@@ -16,6 +16,9 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State {
+  var top = 10.0;
+  var left = 10.0;
+
   CameraController controller;
 
   List cameras;
@@ -99,12 +102,20 @@ class _CameraScreenState extends State {
                     ),
                     new Align(
                       alignment: Alignment.center,
-                      child: new Container(
-                        // padding: EdgeInsets.only(top: 200.0, left: 20.0),
-                        height: MediaQuery.of(context).size.height / 3,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: Image.asset('assets/images/crosshair.png'),
-                      ),
+                      child: GestureDetector(
+                          child: Container(
+                            // padding: EdgeInsets.only(top: 200.0, left: 20.0),
+                            height: MediaQuery.of(context).size.height / 3,
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Image.asset('assets/images/crosshair.png'),
+                          ),
+                          onVerticalDragUpdate: (DragUpdateDetails dd) {
+                            print(dd);
+                            setState(() {
+                              top = dd.localPosition.dy;
+                              left = dd.localPosition.dx;
+                            });
+                          }),
                     ),
                   ],
                 ),
@@ -185,9 +196,8 @@ class _CameraScreenState extends State {
 
     CameraLensDirection lensDirection = selectedCamera.lensDirection;
 
-
-///         CHNAGE THIS TO INCREASE MAGNIFICATION
-///
+    ///         CHNAGE THIS TO INCREASE MAGNIFICATION
+    ///
     return Expanded(
       child: Align(
         alignment: Alignment.centerLeft,
