@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../back_end/constants.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:camera/camera.dart';
+
 List<CameraDescription> cameras;
 
 class DashboardPage extends StatefulWidget {
@@ -53,11 +55,7 @@ class _DashboardPageState extends State<DashboardPage> {
           icon: const Icon(Icons.add),
           label: const Text('Add a photo'),
           onPressed: () {
-            // Pushing a named route
-            Navigator.of(context).pushNamed(
-              '/camerapage',
-              arguments: cameras,
-            );
+            _handlePhoto(context);
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -113,4 +111,29 @@ void choiceAction2(String choice2) {
   } else if (choice2 == MoreConstants.SaveAll) {
     print('Save All');
   }
+}
+
+// Alert Dialog
+Future<void> _handlePhoto(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return CupertinoAlertDialog(
+        title: Text('Please Position Crosshair'),
+        content: const Text(
+            'Before detecting cancer, ensure your focus area is centered.'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                '/camerapage',
+                arguments: cameras,
+              );
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
