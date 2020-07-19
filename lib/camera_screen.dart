@@ -16,8 +16,8 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State {
-  double xPosition = 0;
-  double yPosition = 0;
+  double xPosition = 120;
+  double yPosition = 150;
 
   CameraController controller;
 
