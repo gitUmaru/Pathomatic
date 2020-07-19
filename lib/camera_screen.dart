@@ -16,8 +16,8 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State {
-  var top = 10.0;
-  var left = 10.0;
+  double xPosition = 0;
+  double yPosition = 0;
 
   CameraController controller;
 
@@ -103,17 +103,23 @@ class _CameraScreenState extends State {
                     new Align(
                       alignment: Alignment.center,
                       child: GestureDetector(
-                          child: Container(
-                            // padding: EdgeInsets.only(top: 200.0, left: 20.0),
-                            height: MediaQuery.of(context).size.height / 3,
-                            width: MediaQuery.of(context).size.width / 3,
-                            child: Image.asset('assets/images/crosshair.png'),
-                          ),
-                          onVerticalDragUpdate: (DragUpdateDetails dd) {
-                            print(dd);
+                          child: Stack(children: <Widget>[
+                            Positioned(
+                              top: yPosition,
+                              left: xPosition,
+                              child: Container(
+                                // padding: EdgeInsets.only(top: 200.0, left: 20.0),
+                                height: MediaQuery.of(context).size.height / 3,
+                                width: MediaQuery.of(context).size.width / 3,
+                                child:
+                                    Image.asset('assets/images/crosshair.png'),
+                              ),
+                            ),
+                          ]),
+                          onPanUpdate: (tapInfo) {
                             setState(() {
-                              top = dd.localPosition.dy;
-                              left = dd.localPosition.dx;
+                              xPosition += tapInfo.delta.dx;
+                              yPosition += tapInfo.delta.dy;
                             });
                           }),
                     ),
