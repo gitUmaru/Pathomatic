@@ -59,7 +59,7 @@ class _WelcomePageState extends State<WelcomePage>
                                             children: <Widget>[
                                               Container(
                                                 padding: EdgeInsets.fromLTRB(
-                                                    10, 4, 4, 4),
+                                                    12, 4, 4, 4),
                                                 child: Text(
                                                   'BEGIN',
                                                   style: TextStyle(
@@ -69,11 +69,11 @@ class _WelcomePageState extends State<WelcomePage>
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.fromLTRB(
-                                                    4, 0, 10, 0),
+                                                    8, 0, 10, 0),
                                                 child: Icon(
                                                   Icons.photo_camera,
                                                   color: Colors.white,
-                                                  size: 30,
+                                                  size: 20,
                                                 ),
                                               ),
                                             ],

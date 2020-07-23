@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="iSPY_Cancer"
+        android:label="Pathomatic"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
