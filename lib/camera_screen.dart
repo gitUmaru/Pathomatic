@@ -131,23 +131,20 @@ class _CameraScreenState extends State {
                 ),
               ),
               SizedBox(height: 5),
-              Align(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        _cameraTogglesRowWidget(),
-                        _mlTextWidget(),
-                      ],
-                    ),
-                    _captureControlRowWidget(context),
-                    SizedBox(width: 50),
-                  ],
-                ),
-                alignment: Alignment.center,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      _cameraTogglesRowWidget(),
+                      _mlTextWidget(),
+                    ],
+                  ),
+                  _captureControlRowWidget(context),
+                  SizedBox(width: 50),
+                ],
               ),
               SizedBox(height: 5),
             ],
