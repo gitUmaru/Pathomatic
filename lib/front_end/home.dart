@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   RaisedButton(
                     child: const Text('10x Magnification'),
-                    onPressed: () => onSelect(yolo),
+                    onPressed: () => onSelect(ssd),
                   ),
                   RaisedButton(
                     child: const Text('25x Magnification'),
