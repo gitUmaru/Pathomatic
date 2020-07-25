@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'front_end/welcome.dart';
 import 'back_end/route_generator.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(MyApp());
 
