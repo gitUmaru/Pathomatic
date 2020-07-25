@@ -128,7 +128,7 @@ Future<void> _handlePhoto(BuildContext context) {
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushNamed(
-                '/camerapage',
+                '/homepage',
                 arguments: cameras,
               );
             },
