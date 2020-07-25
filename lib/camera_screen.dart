@@ -1,142 +1,52 @@
 import 'package:camera/camera.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:path/path.dart';
+
 import 'package:path_provider/path_provider.dart';
+
 import './preview_screen.dart';
-import 'dart:math' as math;
-
-import 'package:tflite/tflite.dart';
-
-import 'back_end/models.dart';
-
-typedef void Callback(List<dynamic> list, int h, int w);
-
 
 class CameraScreen extends StatefulWidget {
-  final List<CameraDescription> cameras;  
-  final Callback setRecognitions;
-  final String model;
-
-  CameraScreen(this.cameras, this.model, this.setRecognitions);
-
   @override
-  _CameraState createState() => new _CameraState();
+  _CameraScreenState createState() {
+    return _CameraScreenState();
+  }
 }
 
-class _CameraState extends State<CameraScreen> {
+class _CameraScreenState extends State {
   double xPosition = 120;
   double yPosition = 150;
 
+  CameraController controller;
+
   List cameras;
+
   int selectedCameraIdx;
+
   String imagePath;
 
-  CameraController controller;
-  bool isDetecting = false;
-
   @override
-   void initState() {
+  void initState() {
     super.initState();
 
-    if (widget.cameras == null || widget.cameras.length < 1) {
-      print(widget.cameras);
-      print('No camera is found');
-    } else {
-      controller = new CameraController(
-        widget.cameras[0],
-        ResolutionPreset.high,
-      );
-      controller.initialize().then((_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {});
+    availableCameras().then((availableCameras) {
+      cameras = availableCameras;
 
-        controller.startImageStream((CameraImage img) {
-          if (!isDetecting) {
-            isDetecting = true;
-
-            int startTime = new DateTime.now().millisecondsSinceEpoch;
-
-            if (widget.model == mobilenet) {
-              Tflite.runModelOnFrame(
-                bytesList: img.planes.map((plane) {
-                  return plane.bytes;
-                }).toList(),
-                imageHeight: img.height,
-                imageWidth: img.width,
-                numResults: 2,
-              ).then((recognitions) {
-                int endTime = new DateTime.now().millisecondsSinceEpoch;
-                print("Detection took ${endTime - startTime}");
-
-                widget.setRecognitions(recognitions, img.height, img.width);
-
-                isDetecting = false;
-              });
-            } else if (widget.model == posenet) {
-              Tflite.runPoseNetOnFrame(
-                bytesList: img.planes.map((plane) {
-                  return plane.bytes;
-                }).toList(),
-                imageHeight: img.height,
-                imageWidth: img.width,
-                numResults: 2,
-              ).then((recognitions) {
-                int endTime = new DateTime.now().millisecondsSinceEpoch;
-                print("Detection took ${endTime - startTime}");
-
-                widget.setRecognitions(recognitions, img.height, img.width);
-
-                isDetecting = false;
-              });
-            } else {
-              Tflite.detectObjectOnFrame(
-                bytesList: img.planes.map((plane) {
-                  return plane.bytes;
-                }).toList(),
-                model: widget.model == yolo ? "YOLO" : "SSDMobileNet",
-                imageHeight: img.height,
-                imageWidth: img.width,
-                imageMean: widget.model == yolo ? 0 : 127.5,
-                imageStd: widget.model == yolo ? 255.0 : 127.5,
-                numResultsPerClass: 1,
-                threshold: widget.model == yolo ? 0.2 : 0.4,
-              ).then((recognitions) {
-                int endTime = new DateTime.now().millisecondsSinceEpoch;
-                print("Detection took ${endTime - startTime}");
-
-                widget.setRecognitions(recognitions, img.height, img.width);
-
-                isDetecting = false;
-              });
-            }
-          }
+      if (cameras.length > 0) {
+        setState(() {
+          selectedCameraIdx = 0;
         });
-      });
-    }
+
+        _initCameraController(cameras[selectedCameraIdx]).then((void v) {});
+      } else {
+        print("No camera available");
+      }
+    }).catchError((err) {
+      print('Error: $err.code\nError Message: $err.message');
+    });
   }
-
-  // void initState() {
-  //   super.initState();
-
-  //   availableCameras().then((availableCameras) {
-  //     cameras = availableCameras;
-
-  //     if (cameras.length > 0) {
-  //       setState(() {
-  //         selectedCameraIdx = 0;
-  //       });
-
-  //       _initCameraController(cameras[selectedCameraIdx]).then((void v) {});
-  //     } else {
-  //       print("No camera available");
-  //     }
-  //   }).catchError((err) {
-  //     print('Error: $err.code\nError Message: $err.message');
-  //   });
-  // }
-  
 
   Future _initCameraController(CameraDescription cameraDescription) async {
     if (controller != null) {
@@ -236,7 +146,6 @@ class _CameraState extends State<CameraScreen> {
   }
 
   /// Display Camera preview.
-
   Widget _cameraPreviewWidget(context) {
     final size = MediaQuery.of(context).size;
 
@@ -260,7 +169,6 @@ class _CameraState extends State<CameraScreen> {
   }
 
   /// Display the control bar with buttons to take pictures
-
   Widget _captureControlRowWidget(context) {
     return Expanded(
       child: Align(
@@ -282,7 +190,6 @@ class _CameraState extends State<CameraScreen> {
   }
 
   /// Display a row of toggle to select the camera (or a message if no camera is available).
-
   Widget _cameraTogglesRowWidget() {
     if (cameras == null || cameras.isEmpty) {
       return Spacer();
