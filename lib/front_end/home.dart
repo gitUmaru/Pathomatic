@@ -1,3 +1,4 @@
+import 'package:Pathomatic/back_end/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
@@ -5,7 +6,6 @@ import 'dart:math' as math;
 
 import '../back_end/bndbox.dart';
 import '../back_end/models.dart';
-import '../camera_screen.dart';
 
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             )
           : Stack(
               children: [
-                CameraScreen(
+                Camera(
                   widget.cameras,
                   _model,
                   setRecognitions,

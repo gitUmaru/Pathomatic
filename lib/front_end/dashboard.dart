@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:camera/camera.dart';
 
+import 'home.dart';
+
 List<CameraDescription> cameras;
 
 class DashboardPage extends StatefulWidget {
@@ -126,15 +128,34 @@ Future<void> _handlePhoto(BuildContext context) {
           FlatButton(
             child: Text('OK'),
             onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushNamed(
-                '/homepage',
-                arguments: cameras,
-              );
+              cameraPage();
             },
           ),
         ],
       );
     },
   );
+}
+
+Future<Null> cameraPage() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error: $e.code\nError Message: $e.message');
+  }
+  runApp(new CameraApp());
+}
+
+class CameraApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'tflite real-time detection',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      home: HomePage(cameras),
+    );
+  }
 }

@@ -49,11 +49,11 @@ class RouteGenerator {
             builder: (_) => HomePage(cameras),
           );
 
-        // case '/camerapage':
-        // // Validation of correct data type
-        //   return MaterialPageRoute(
-        //     builder: (_) => CameraScreen(),
-        //   );
+        case '/camerapage':
+        // Validation of correct data type
+          return MaterialPageRoute(
+            builder: (_) => CameraScreen(),
+          );
 
       default:
         // If there is no such named route in the switch statement, e.g. /third
