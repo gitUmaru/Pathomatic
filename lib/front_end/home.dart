@@ -1,9 +1,9 @@
+import 'package:Pathomatic/back_end/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
-import '../back_end/camera.dart';
 import '../back_end/bndbox.dart';
 import '../back_end/models.dart';
 
@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
     switch (_model) {
       case yolo:
         res = await Tflite.loadModel(
-          model: "assets/yolov2_tiny.tflite",
-          labels: "assets/yolov2_tiny.txt",
+          model: "assets/model_unquant.tflite",
+          labels: "assets/labels.txt",
         );
         break;
 
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   RaisedButton(
                     child: const Text('10x Magnification'),
-                    onPressed: () => onSelect(yolo),
+                    onPressed: () => onSelect(ssd),
                   ),
                   RaisedButton(
                     child: const Text('25x Magnification'),
