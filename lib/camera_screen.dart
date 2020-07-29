@@ -1,11 +1,7 @@
 import 'package:camera/camera.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:path/path.dart';
-
 import 'package:path_provider/path_provider.dart';
-
 import './preview_screen.dart';
 
 import './back_end/constants.dart';
@@ -44,7 +40,8 @@ class _CameraScreenState extends State {
         });
 
         _initCameraController(cameras[selectedCameraIdx]).then((void v) {});
-      } else {
+      } 
+      else {
         print("No camera available");
       }
     }).catchError((err) {
@@ -155,7 +152,6 @@ class _CameraScreenState extends State {
   }
 
   /// Display Camera preview.
-
   Widget _cameraPreviewWidget(context) {
     final size = MediaQuery.of(context).size;
 
@@ -179,7 +175,6 @@ class _CameraScreenState extends State {
   }
 
   /// Display the control bar with buttons to take pictures
-
   Widget _captureControlRowWidget(context) {
     return Expanded(
       child: Align(
@@ -200,6 +195,10 @@ class _CameraScreenState extends State {
     );
   }
 
+<<<<<<< HEAD
+=======
+  /// Display a row of toggle to select the camera (or a message if no camera is available).
+>>>>>>> f2c2bba2cf1ab4c080176986ec5d1b8e0d39b42d
   Widget _cameraTogglesRowWidget() {
     return PopupMenuButton<String>(
       icon: const Icon(
