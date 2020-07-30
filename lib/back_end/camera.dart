@@ -161,8 +161,8 @@ class _CameraState extends State<Camera> {
                       child: GestureDetector(
                           child: Stack(children: <Widget>[
                             Positioned(
-                              top:  MediaQuery.of(context).size.height / 3,
-                              left:  MediaQuery.of(context).size.width / 3,
+                              top:  yPosition,
+                              left:  xPosition,
                               child: Container(
                                 //padding: EdgeInsets.only(top: 200.0, left: 120.0),
                                 height: MediaQuery.of(context).size.height / 3,
