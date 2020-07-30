@@ -182,17 +182,19 @@ class _CameraState extends State<Camera> {
                     ),
                     Align(
                       alignment: Alignment.topLeft,
-                      child: new IconButton(
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          color: Colors.white,
                           onPressed: () {
                             Navigator.of(context).pushNamed(
-                              '/homepage',
+                              '/dashboard',
                               arguments: 'none',
                             );
-                          }),
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),

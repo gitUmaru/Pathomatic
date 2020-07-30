@@ -76,52 +76,33 @@ class _HomePageState extends State<HomePage> {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
       body: _model == ""
-          ? Stack(children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: new IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(
-                          '/homepage',
-                          arguments: 'none',
-                        );
-                      }),
-                ),
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
+                    child: const Text('4x Magnification'),
+                    onPressed: () => onSelect(ssd),
+                  ),
+                  RaisedButton(
+                    child: const Text('10x Magnification'),
+                    onPressed: () => onSelect(ssd),
+                  ),
+                  RaisedButton(
+                    child: const Text('25x Magnification'),
+                    onPressed: () => onSelect(mobilenet),
+                  ),
+                  RaisedButton(
+                    child: const Text('40x Magnification'),
+                    onPressed: () => onSelect(posenet),
+                  ),
+                  RaisedButton(
+                    child: const Text('63x Magnification'),
+                    onPressed: () => onSelect(mobilenet),
+                  ),
+                ],
               ),
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    RaisedButton(
-                      child: const Text('4x Magnification'),
-                      onPressed: () => onSelect(ssd),
-                    ),
-                    RaisedButton(
-                      child: const Text('10x Magnification'),
-                      onPressed: () => onSelect(ssd),
-                    ),
-                    RaisedButton(
-                      child: const Text('25x Magnification'),
-                      onPressed: () => onSelect(mobilenet),
-                    ),
-                    RaisedButton(
-                      child: const Text('40x Magnification'),
-                      onPressed: () => onSelect(posenet),
-                    ),
-                    RaisedButton(
-                      child: const Text('63x Magnification'),
-                      onPressed: () => onSelect(mobilenet),
-                    ),
-                  ],
-                ),
-              )
-            ])
+            )
           : Stack(
               children: [
                 Camera(
