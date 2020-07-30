@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
+import './route_generator.dart';
 import '../preview_screen.dart';
 import 'models.dart';
 
@@ -177,6 +178,20 @@ class _CameraState extends State<Camera> {
                               xPosition += tapInfo.delta.dx;
                               yPosition += tapInfo.delta.dy;
                             });
+                          }),
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: new IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              '/homepage',
+                              arguments: 'none',
+                            );
                           }),
                     ),
                   ],
