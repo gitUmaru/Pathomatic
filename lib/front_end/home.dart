@@ -77,19 +77,22 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _model == ""
           ? Stack(children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: new IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(
-                        '/homepage',
-                        arguments: 'none',
-                      );
-                    }),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: new IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                          '/homepage',
+                          arguments: 'none',
+                        );
+                      }),
+                ),
               ),
               Center(
                 child: Column(
