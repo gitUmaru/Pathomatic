@@ -5,13 +5,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
+import './route_generator.dart';
 import '../preview_screen.dart';
 import 'models.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
 class Camera extends StatefulWidget {
-  final List<CameraDescription> cameras;  
+  final List<CameraDescription> cameras;
   final Callback setRecognitions;
   final String model;
 
@@ -137,11 +138,11 @@ class _CameraState extends State<Camera> {
     var previewRatio = previewH / previewW;
 
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
-          centerTitle: true,
-          elevation: 5,
-          title: Text("Pathomatic")),
+      // appBar: AppBar(
+      //     backgroundColor: Colors.lightBlue,
+      //     centerTitle: true,
+      //     elevation: 5,
+      //     title: Text("Pathomatic")),
       body: Container(
         decoration: new BoxDecoration(color: Colors.black),
         child: SafeArea(
@@ -161,8 +162,13 @@ class _CameraState extends State<Camera> {
                       child: GestureDetector(
                           child: Stack(children: <Widget>[
                             Positioned(
+<<<<<<< HEAD
                               top:  yPosition,
                               left:  xPosition,
+=======
+                              top: MediaQuery.of(context).size.height / 3,
+                              left: MediaQuery.of(context).size.width / 3,
+>>>>>>> 65501118d885916c529a736be339520f4f50ae93
                               child: Container(
                                 //padding: EdgeInsets.only(top: 200.0, left: 120.0),
                                 height: MediaQuery.of(context).size.height / 3,
@@ -178,6 +184,22 @@ class _CameraState extends State<Camera> {
                               yPosition += tapInfo.delta.dy;
                             });
                           }),
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              '/dashboard',
+                              arguments: 'none',
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -335,10 +357,8 @@ class _CameraState extends State<Camera> {
     }
   }
 
-
-
   // CAMERA EXCEPTION METHOD
-  
+
   // void _showCameraException(CameraException e) {
   //   String errorText = 'Error: ${e.code}\nError Message: ${e.description}';
 
@@ -347,4 +367,3 @@ class _CameraState extends State<Camera> {
   //   print('Error: ${e.code}\n${e.description}');
   // }
 }
-

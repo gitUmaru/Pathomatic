@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => new _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
   List<dynamic> _recognitions;
   int _imageHeight = 0;
