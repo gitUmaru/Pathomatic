@@ -195,10 +195,7 @@ class _CameraScreenState extends State {
     );
   }
 
-<<<<<<< HEAD
-=======
   /// Display a row of toggle to select the camera (or a message if no camera is available).
->>>>>>> f2c2bba2cf1ab4c080176986ec5d1b8e0d39b42d
   Widget _cameraTogglesRowWidget() {
     return PopupMenuButton<String>(
       icon: const Icon(
