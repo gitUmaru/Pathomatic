@@ -29,6 +29,8 @@ dependencies:
   path_provider: ^1.1.0
   path: ^1.6.2
   esys_flutter_share: ^1.0.2
+  firebase_storage: ^3.1.6
+  firebase_core: ^0.4.5
 
 
   # The following adds the Cupertino Icons font to your application.
