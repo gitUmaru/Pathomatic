@@ -1,6 +1,7 @@
 import 'package:Pathomatic/back_end/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import '../back_end/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 

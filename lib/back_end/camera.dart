@@ -7,6 +7,7 @@ import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
 import '../preview_screen.dart';
+import './constants.dart';
 import 'models.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
@@ -29,6 +30,7 @@ class _CameraState extends State<Camera> {
   List cameras;
   int selectedCameraIdx;
   String imagePath;
+  String selectedChoice3;
 
   CameraController controller;
   bool isDetecting = false;
@@ -162,8 +164,8 @@ class _CameraState extends State<Camera> {
                       child: GestureDetector(
                           child: Stack(children: <Widget>[
                             Positioned(
-                              top:  yPosition,
-                              left:  xPosition,
+                              top: yPosition,
+                              left: xPosition,
                               child: Container(
                                 //padding: EdgeInsets.only(top: 200.0, left: 120.0),
                                 height: MediaQuery.of(context).size.height / 3,
@@ -196,18 +198,23 @@ class _CameraState extends State<Camera> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10.0,
-              ),
+              SizedBox(height: 5),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _cameraTogglesRowWidget(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      _cameraTogglesRowWidget(),
+                      _mlTextWidget(),
+                    ],
+                  ),
                   _captureControlRowWidget(context),
-                  Spacer()
+                  SizedBox(width: 50),
                 ],
               ),
-              SizedBox(height: 10.0)
+              SizedBox(height: 5),
             ],
           ),
         ),
@@ -262,54 +269,48 @@ class _CameraState extends State<Camera> {
   /// Display a row of toggle to select the camera (or a message if no camera is available).
 
   Widget _cameraTogglesRowWidget() {
-    if (cameras == null || cameras.isEmpty) {
-      return Spacer();
-    }
-
-    CameraDescription selectedCamera = cameras[selectedCameraIdx];
-
-    CameraLensDirection lensDirection = selectedCamera.lensDirection;
-
-    ///         CHNAGE THIS TO INCREASE MAGNIFICATION
-    ///
-    return Expanded(
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: FlatButton.icon(
-            onPressed: _onSwitchCamera,
-            icon: Icon(_getCameraLensIcon(lensDirection), color: Colors.white),
-            label: Text(
-              "10x",
-              // "${lensDirection.toString().toUpperCase().substring(lensDirection.toString().indexOf('.') + 1)}",
-              style: TextStyle(color: Colors.white),
-            )),
+    return PopupMenuButton<String>(
+      icon: const Icon(
+        Icons.zoom_in,
+        color: Colors.white,
+        size: 30,
       ),
+      onSelected: choiceAction3,
+      itemBuilder: (BuildContext context) {
+        return MLConstants.choices3.map((String choice3) {
+          return PopupMenuItem<String>(
+            value: choice3,
+            child: Text(choice3),
+          );
+        }).toList();
+      },
     );
   }
 
-  IconData _getCameraLensIcon(CameraLensDirection direction) {
-    switch (direction) {
-      case CameraLensDirection.back:
-        return Icons.camera_rear;
-
-      case CameraLensDirection.front:
-        return Icons.camera_front;
-
-      case CameraLensDirection.external:
-        return Icons.camera;
-
-      default:
-        return Icons.device_unknown;
+  void choiceAction3(String choice3) {
+    setState(() {
+      selectedChoice3 = choice3;
+    });
+    if (choice3 == MLConstants.FourX) {
+      print('4x');
+    } else if (choice3 == MLConstants.TenX) {
+      print('10x');
+    } else if (choice3 == MLConstants.TwentyFiveX) {
+      print('25x');
+    } else if (choice3 == MLConstants.FourtyX) {
+      print('40x');
+    } else if (choice3 == MLConstants.SixtyThreeX) {
+      print('63x');
     }
   }
 
-  void _onSwitchCamera() {
-    selectedCameraIdx =
-        selectedCameraIdx < cameras.length - 1 ? selectedCameraIdx + 1 : 0;
-
-    CameraDescription selectedCamera = cameras[selectedCameraIdx];
-
-    // _initCameraController(selectedCamera);
+  Widget _mlTextWidget() {
+    return Container(
+        child: (Text("${selectedChoice3 ?? ''}",
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.white,
+            ))));
   }
 
   void _onCapturePressed(context) async {
