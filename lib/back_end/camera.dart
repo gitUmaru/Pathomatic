@@ -1,3 +1,4 @@
+import 'package:Pathomatic/front_end/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart';
@@ -5,7 +6,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
-import './route_generator.dart';
 import '../preview_screen.dart';
 import 'models.dart';
 
@@ -162,13 +162,8 @@ class _CameraState extends State<Camera> {
                       child: GestureDetector(
                           child: Stack(children: <Widget>[
                             Positioned(
-<<<<<<< HEAD
                               top:  yPosition,
                               left:  xPosition,
-=======
-                              top: MediaQuery.of(context).size.height / 3,
-                              left: MediaQuery.of(context).size.width / 3,
->>>>>>> 65501118d885916c529a736be339520f4f50ae93
                               child: Container(
                                 //padding: EdgeInsets.only(top: 200.0, left: 120.0),
                                 height: MediaQuery.of(context).size.height / 3,
@@ -193,10 +188,7 @@ class _CameraState extends State<Camera> {
                           icon: Icon(Icons.arrow_back),
                           color: Colors.white,
                           onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              '/dashboard',
-                              arguments: 'none',
-                            );
+                            DashboardPage(data: "none");
                           },
                         ),
                       ),

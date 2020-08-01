@@ -1,3 +1,5 @@
+import 'package:Pathomatic/back_end/camera.dart';
+import 'package:Pathomatic/back_end/models.dart';
 import 'package:Pathomatic/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Pathomatic/front_end/home.dart';
@@ -8,7 +10,7 @@ import '../front_end/dashboard.dart';
 import 'patient_functionality/patient.dart';
 
  List<CameraDescription> cameras;
-
+ List<dynamic> _recognitions;
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
