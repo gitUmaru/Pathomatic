@@ -1,4 +1,5 @@
 import 'package:Pathomatic/front_end/dashboard.dart';
+import 'package:Pathomatic/front_end/home.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart';
@@ -190,7 +191,12 @@ class _CameraState extends State<Camera> {
                           icon: Icon(Icons.arrow_back),
                           color: Colors.white,
                           onPressed: () {
-                            DashboardPage(data: "none");
+                            //  DashboardPage(data: "none");
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) =>
+                                        new HomePage(cameras)));
                           },
                         ),
                       ),
