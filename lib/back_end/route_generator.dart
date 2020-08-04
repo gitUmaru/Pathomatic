@@ -10,7 +10,6 @@ import '../front_end/dashboard.dart';
 import 'patient_functionality/patient.dart';
 
  List<CameraDescription> cameras;
- List<dynamic> _recognitions;
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -47,6 +46,7 @@ class RouteGenerator {
 
         case '/homepage':
         // Validation of correct data type
+          cameraPage();
           return MaterialPageRoute(
             builder: (_) => HomePage(cameras),
           );
@@ -74,5 +74,14 @@ class RouteGenerator {
         ),
       );
     });
+  }
+}
+
+Future<Null> cameraPage() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error: $e.code\nError Message: $e.message');
   }
 }

@@ -101,6 +101,15 @@ class _HomePageState extends State<HomePage> {
                     child: const Text('63x Magnification'),
                     onPressed: () => onSelect(mobilenet),
                   ),
+                   RaisedButton(
+                    child: const Text('Home'),
+                    onPressed: (){
+                      Navigator.of(context).pushNamed(
+                        '/dashboard',
+                        arguments: 'none',
+                      );
+                    },
+                  ),
                 ],
               ),
             )

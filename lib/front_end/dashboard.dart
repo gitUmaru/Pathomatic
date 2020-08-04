@@ -128,7 +128,10 @@ Future<void> _handlePhoto(BuildContext context) {
           FlatButton(
             child: Text('OK'),
             onPressed: () {
-              cameraPage();
+              Navigator.of(context).pushNamed(
+                  '/homepage',
+                  arguments: 'none',
+              );
             },
           ),
         ],

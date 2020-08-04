@@ -196,7 +196,7 @@ class _CameraState extends State<Camera> {
                                 context,
                                 new MaterialPageRoute(
                                     builder: (context) =>
-                                        new HomePage(cameras)));
+                                        new DashboardPage(data: 'none')));
                           },
                         ),
                       ),
