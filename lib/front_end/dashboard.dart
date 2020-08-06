@@ -38,6 +38,15 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           actions: <Widget>[
             IconButton(
+              icon: const Icon(Icons.filter),
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/stichpage',
+                  arguments: 'none',
+                );
+              },
+            ),
+            IconButton(
               icon: const Icon(Icons.people_outline),
               onPressed: () {
                 Navigator.of(context).pushNamed(
@@ -129,8 +138,8 @@ Future<void> _handlePhoto(BuildContext context) {
             child: Text('OK'),
             onPressed: () {
               Navigator.of(context).pushNamed(
-                  '/homepage',
-                  arguments: 'none',
+                '/homepage',
+                arguments: 'none',
               );
             },
           ),

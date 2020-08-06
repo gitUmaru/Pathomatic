@@ -4,12 +4,13 @@ import 'package:Pathomatic/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Pathomatic/front_end/home.dart';
 import 'package:camera/camera.dart';
+import './image_stitching/stitch.dart';
 
 import '../main.dart';
 import '../front_end/dashboard.dart';
 import 'patient_functionality/patient.dart';
 
- List<CameraDescription> cameras;
+List<CameraDescription> cameras;
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -44,18 +45,24 @@ class RouteGenerator {
         // You can also throw an exception while in development.
         return _errorRoute();
 
-        case '/homepage':
+      case '/homepage':
         // Validation of correct data type
-          cameraPage();
-          return MaterialPageRoute(
-            builder: (_) => HomePage(cameras),
-          );
+        cameraPage();
+        return MaterialPageRoute(
+          builder: (_) => HomePage(cameras),
+        );
 
-        case '/camerapage':
+      case '/stichpage':
         // Validation of correct data type
-          return MaterialPageRoute(
-            builder: (_) => CameraScreen(),
-          );
+        return MaterialPageRoute(
+          builder: (_) => Stitchpage(),
+        );
+
+      case '/camerapage':
+        // Validation of correct data type
+        return MaterialPageRoute(
+          builder: (_) => CameraScreen(),
+        );
 
       default:
         // If there is no such named route in the switch statement, e.g. /third
