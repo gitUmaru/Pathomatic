@@ -19,6 +19,7 @@ class _StitchpageState extends State<Stitchpage> {
       ),
       body: Container(),
       bottomNavigationBar: BottomAppBar(
+        color: Colors.grey[200],
         child: Row(
           children: [
             IconButton(icon: Icon(Icons.cloud_download), onPressed: () {}),
