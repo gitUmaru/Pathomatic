@@ -17,41 +17,26 @@ class _StitchpageState extends State<Stitchpage> {
         title: Text('Image Stitching'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            FloatingActionButton.extended(
-              backgroundColor: const Color(0xff03dac6),
-              foregroundColor: Colors.black,
-              onPressed: () {
-                // Respond to button press
-              },
-              icon: Icon(Icons.cloud_download),
-              label: Text('Display'),
-            ),
-            FloatingActionButton.extended(
-              backgroundColor: const Color(0xff03dac6),
-              foregroundColor: Colors.black,
-              onPressed: () {
-                // Respond to button press
-              },
-              icon: Icon(Icons.burst_mode),
-              label: Text('Stitch'),
-            ),
-            FloatingActionButton.extended(
-              backgroundColor: const Color(0xff03dac6),
-              foregroundColor: Colors.black,
-              onPressed: () {
-                // Respond to button press
-              },
-              icon: Icon(Icons.file_download),
-              label: Text('Save'),
-            ),
+      body: Container(),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: [
+            IconButton(icon: Icon(Icons.cloud_download), onPressed: () {}),
+            Spacer(),
+            IconButton(icon: Icon(Icons.file_download), onPressed: () {}),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.lightBlue,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          // Respond to button press
+        },
+        icon: Icon(Icons.burst_mode),
+        label: Text('Stitch'),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
