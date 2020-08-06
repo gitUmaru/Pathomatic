@@ -24,7 +24,7 @@ class _StitchpageState extends State<Stitchpage> {
           children: [
             IconButton(icon: Icon(Icons.cloud_download), onPressed: () {}),
             Spacer(),
-            IconButton(icon: Icon(Icons.file_download), onPressed: () {}),
+            IconButton(icon: Icon(Icons.save), onPressed: () {}),
           ],
         ),
       ),
