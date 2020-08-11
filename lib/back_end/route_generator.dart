@@ -55,7 +55,7 @@ class RouteGenerator {
       case '/stichpage':
         // Validation of correct data type
         return MaterialPageRoute(
-          builder: (_) => Stitchpage(),
+          builder: (_) => ImagesScreen(),
         );
 
       case '/camerapage':
