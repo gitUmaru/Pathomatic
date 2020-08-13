@@ -1,5 +1,4 @@
 import 'package:Pathomatic/front_end/dashboard.dart';
-import 'package:Pathomatic/front_end/home.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart';
