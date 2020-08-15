@@ -1,7 +1,5 @@
-import 'package:Pathomatic/back_end/camera.dart';
-import 'package:Pathomatic/back_end/models.dart';
 import 'package:Pathomatic/camera_screen.dart';
-import 'package:Pathomatic/front_end/getPatientIdentifier.dart';
+import 'package:Pathomatic/front_end/info.dart';
 import 'package:flutter/material.dart';
 import 'package:Pathomatic/front_end/home.dart';
 import 'package:camera/camera.dart';

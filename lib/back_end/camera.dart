@@ -1,5 +1,4 @@
 import 'package:Pathomatic/front_end/dashboard.dart';
-import 'package:Pathomatic/front_end/getPatientIdentifier.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart';
@@ -295,6 +294,8 @@ class _CameraState extends State<Camera> {
     );
   }
 
+
+  // TODO: Change this with code that acutally chnages the ML model
   void choiceAction3(String choice3) {
     setState(() {
       selectedChoice3 = choice3;
@@ -328,7 +329,7 @@ class _CameraState extends State<Camera> {
 
     try {
       // Attempt to take a picture and log where it's been saved
-
+      globals.noImages = globals.noImages + 1;
       final path = join(
         // In this example, store the picture in the temp directory. Find
 
@@ -336,10 +337,11 @@ class _CameraState extends State<Camera> {
 
         (await getTemporaryDirectory()).path,
 
-        '${DateTime.now()}.png',
+        '${globals.patientIdentifier}${globals.noImages}.png',
       );
 
       print(path);
+      print(globals.noImages);
 
       await controller.takePicture(path);
 
@@ -357,14 +359,4 @@ class _CameraState extends State<Camera> {
       print(e);
     }
   }
-
-  // CAMERA EXCEPTION METHOD
-
-  // void _showCameraException(CameraException e) {
-  //   String errorText = 'Error: ${e.code}\nError Message: ${e.description}';
-
-  //   print(errorText);
-
-  //   print('Error: ${e.code}\n${e.description}');
-  // }
 }

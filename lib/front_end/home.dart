@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import '../back_end/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
+import '../back_end/globals.dart' as globals;
 
 import '../back_end/bndbox.dart';
 import '../back_end/models.dart';
@@ -21,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   List<dynamic> _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
-  String _model = "";
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   loadModel() async {
     String res;
-    switch (_model) {
+    switch (globals.model) {
       case yolo:
         res = await Tflite.loadModel(
           model: "assets/model_unquant.tflite",
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
 
   onSelect(model) {
     setState(() {
-      _model = model;
+      globals.model = model;
     });
     loadModel();
   }
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
-      body: _model == ""
+      body: globals.model == ""
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: (){
                       Navigator.of(context).pushNamed(
                         '/dashboard',
-                        arguments: 'none',
+                        arguments: globals.patientIdentifier,
                       );
                     },
                   ),
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Camera(
                   widget.cameras,
-                  _model,
+                  globals.model,
                   setRecognitions,
                 ),
                 BndBox(
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                     math.min(_imageHeight, _imageWidth),
                     screen.height,
                     screen.width,
-                    _model),
+                    globals.model),
               ],
             ),
     );

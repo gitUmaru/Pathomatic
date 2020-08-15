@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'dart:typed_data';
 import 'dataholder.dart';
 
@@ -31,14 +33,18 @@ class ImagesScreen extends StatelessWidget with RouteAware {
         child: Row(
           children: [
             Spacer(),
-            IconButton(icon: Icon(Icons.save), onPressed: () {}),
+            IconButton(icon: Icon(Icons.save),
+             onPressed: () {
+            }),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.lightBlue,
         foregroundColor: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          _sendEmail(context);
+        },
         icon: Icon(Icons.burst_mode),
         label: Text('Stitch'),
       ),
@@ -67,6 +73,7 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
     if (!requestedIndexes.contains(widget._index)) {
       int maxSize = 7 * 1024 * 1024;
       photosReference
+      // TODO: We most likely change this with the patient id
           .child("cell${widget._index}.png")
           .getData(maxSize)
           .then((data) {
@@ -110,4 +117,54 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
   Widget build(BuildContext context) {
     return GridTile(child: decideGridTileWidget());
   }
+}
+
+
+Future<void> _sendEmail(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return CupertinoAlertDialog(
+        title: Text('"Are you sure you want to stich?'),
+        content: Text(
+          'When you click allow, an email will be sent that starts thr process of stitching all your images at your lowest magnification',
+        ),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            child: Text(
+              'Don\'t Allow',
+              style: TextStyle(color: Colors.red),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          CupertinoDialogAction(
+            child: Text(
+              'Allow',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () {
+              sendEmail();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<Null> sendEmail() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final Email email = Email(
+    body: 'This is a test email',
+    subject: 'This is a test email',
+    recipients: ['pathomaticapp@gmail.com'],
+    isHTML: false,
+  );
+
+  await FlutterEmailSender.send(email);
 }

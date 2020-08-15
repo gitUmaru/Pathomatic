@@ -38,24 +38,35 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Please enter your information and read the prompts carefully."),
-            Text(
-              'Please enter a unique patient identifier. Note that every new patient will require you to restart the app and enter a new patient identifier.',
-            ),
             TextField(
               controller: patientID,
             ),
-             Text(
-              'Please enter your name',
+            Text(
+              'Please enter a unique patient identifier.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.0),
+              
             ),
             TextField(
               controller: name,
             ),
             Text(
-              'Please enter your email',
+              'Please enter your name',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.0),
             ),
             TextField(
-              controller: email,
+              controller: patientID,
+            ),
+            Text(
+              'Please enter your email',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Text(""),Text(""),Text(""),Text(""),
+            Text("Note that for every new patient will require you to restart the app and enter a new patient identifier.",
+                style: TextStyle(height: 1.5,fontSize: 15.0),
+                textAlign: TextAlign.center,
             ),
           ],
         ),
