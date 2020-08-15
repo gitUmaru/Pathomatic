@@ -28,40 +28,61 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Unique Patient Identifier'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              controller: patientID,
-            ),
-            Text(
-              'Please enter a unique patient identifier.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0),
-            ),
-            TextField(
-              controller: name,
-            ),
-            Text(
-              'Please enter your name',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0),
-            ),
-            TextField(
-              controller: patientID,
-            ),
-            Text(
-              'Please enter your email',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0),
-            ),
+            new Flexible(
+                child: new TextFormField(
+                    controller: patientID,
+                    decoration: new InputDecoration(
+                        labelText: 'Please enter a unique patient identifier',
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(),
+                        )))),
             Text(""),
             Text(""),
+            new Flexible(
+                child: new TextFormField(
+                    controller: name,
+                    decoration: new InputDecoration(
+                        labelText: 'Please enter your name',
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(),
+                        )))),
+            Text(""),
+            Text(""),
+            new Flexible(
+                child: new TextFormField(
+                    controller: email,
+                    decoration: new InputDecoration(
+                        labelText: 'Please enter your email',
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(),
+                        )))),
+            Text(""),
+            Text(""),
+            new Flexible(
+                child: new TextFormField(
+                    controller: hospital,
+                    decoration: new InputDecoration(
+                        labelText: 'Please enter your hospital',
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(),
+                        )))),
             Text(""),
             Text(""),
             Text(
