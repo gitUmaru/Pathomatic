@@ -100,7 +100,8 @@ class _UploaderState extends State<Uploader> {
   /// Starts an upload task
   void _startUpload() {
     /// Unique file name for the file
-    String filePath = 'images/${DateTime.now()}.png';
+    String filePath =
+        'images/${DateTime.now()}.png'; // TODO: Change this to patient id
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
