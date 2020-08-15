@@ -1,11 +1,13 @@
 import 'package:Pathomatic/front_end/dashboard.dart';
-import 'package:Pathomatic/front_end/home.dart';
+import 'package:Pathomatic/front_end/getPatientIdentifier.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
+import '../back_end/globals.dart' as globals;
+
 
 import '../preview_screen.dart';
 import './constants.dart';
@@ -196,7 +198,7 @@ class _CameraState extends State<Camera> {
                                 context,
                                 new MaterialPageRoute(
                                     builder: (context) =>
-                                        new DashboardPage(data: 'none')));
+                                        new DashboardPage(data: globals.patientIdentifier)));
                           },
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'package:Pathomatic/back_end/camera.dart';
 import 'package:Pathomatic/back_end/models.dart';
 import 'package:Pathomatic/camera_screen.dart';
+import 'package:Pathomatic/front_end/getPatientIdentifier.dart';
 import 'package:flutter/material.dart';
 import 'package:Pathomatic/front_end/home.dart';
 import 'package:camera/camera.dart';
@@ -63,6 +64,17 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => CameraScreen(),
         );
+
+      case '/patientidentifier':
+        // Validation of correct data type
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => PatientIdentifier(
+              data: args,
+            ),
+          );
+        }
+        return _errorRoute();
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

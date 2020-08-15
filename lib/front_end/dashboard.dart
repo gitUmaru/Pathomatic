@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import '../back_end/constants.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:camera/camera.dart';
-
 import 'home.dart';
 
 List<CameraDescription> cameras;

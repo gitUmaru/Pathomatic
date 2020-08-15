@@ -121,7 +121,7 @@ Future<void> _handleBegin(BuildContext context) async {
             onPressed: () {
               // Pushing a named route
               Navigator.of(context).pushNamed(
-                '/dashboard',
+                '/patientidentifier',
                 arguments: 'You have allowed camera access!',
               );
             },
