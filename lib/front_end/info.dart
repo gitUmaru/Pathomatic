@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../back_end/globals.dart' as globals;
 
 class PatientIdentifier extends StatefulWidget {
-    PatientIdentifier({
+  PatientIdentifier({
     Key key,
     @required this.data,
   }) : super(key: key);
@@ -13,13 +13,11 @@ class PatientIdentifier extends StatefulWidget {
   _PatientIdentifierState createState() => _PatientIdentifierState();
 }
 
-
 class _PatientIdentifierState extends State<PatientIdentifier> {
   final patientID = TextEditingController();
   final name = TextEditingController();
   final email = TextEditingController();
-  // TODO: Do we need this? I think that this would be cool for stats
-  // final hospitial = TextEditingController();
+  final hospital = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +32,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
         title: Text('Unique Patient Identifier'),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -45,7 +43,6 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
               'Please enter a unique patient identifier.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20.0),
-              
             ),
             TextField(
               controller: name,
@@ -63,15 +60,19 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20.0),
             ),
-            Text(""),Text(""),Text(""),Text(""),
-            Text("Note that for every new patient will require you to restart the app and enter a new patient identifier.",
-                style: TextStyle(height: 1.5,fontSize: 15.0),
-                textAlign: TextAlign.center,
+            Text(""),
+            Text(""),
+            Text(""),
+            Text(""),
+            Text(
+              "Note that for every new patient will require you to restart the app and enter a new patient identifier.",
+              style: TextStyle(height: 1.5, fontSize: 15.0),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
-        ),
-        floatingActionButton: FloatingActionButton(
+      ),
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed(
             '/dashboard',
