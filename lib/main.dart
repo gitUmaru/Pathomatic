@@ -1,4 +1,3 @@
-import 'package:Pathomatic/front_end/home.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
