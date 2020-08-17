@@ -14,14 +14,13 @@ class PatientIdentifier extends StatefulWidget {
 }
 
 class _PatientIdentifierState extends State<PatientIdentifier> {
-  final patientID = TextEditingController();
-  final name = TextEditingController();
-  final email = TextEditingController();
-  final hospital = TextEditingController();
 
   @override
   void dispose() {
-    patientID.dispose();
+    globals.patientID.dispose();
+    globals.email.dispose();
+    globals.name.dispose();
+    globals.hospital.dispose();
     super.dispose();
   }
 
@@ -39,7 +38,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
           children: <Widget>[
             new Flexible(
                 child: new TextFormField(
-                    controller: patientID,
+                    controller: globals.patientID,
                     decoration: new InputDecoration(
                         labelText: 'Please enter a unique patient identifier',
                         fillColor: Colors.white,
@@ -51,7 +50,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
             Text(""),
             new Flexible(
                 child: new TextFormField(
-                    controller: name,
+                    controller: globals.email,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your name',
                         fillColor: Colors.white,
@@ -63,7 +62,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
             Text(""),
             new Flexible(
                 child: new TextFormField(
-                    controller: email,
+                    controller: globals.email,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your email',
                         fillColor: Colors.white,
@@ -75,7 +74,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
             Text(""),
             new Flexible(
                 child: new TextFormField(
-                    controller: hospital,
+                    controller: globals.hospital,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your hospital',
                         fillColor: Colors.white,
@@ -97,7 +96,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
         onPressed: () {
           Navigator.of(context).pushNamed(
             '/dashboard',
-            arguments: globals.patientIdentifier = patientID.text,
+            arguments: globals.name.text,
           );
         },
         tooltip: 'Go next',

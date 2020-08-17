@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: (){
                       Navigator.of(context).pushNamed(
                         '/dashboard',
-                        arguments: globals.patientIdentifier,
+                        arguments: globals.name.text,
                       );
                     },
                   ),

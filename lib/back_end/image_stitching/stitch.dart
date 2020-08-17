@@ -4,6 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'dart:typed_data';
 import 'dataholder.dart';
+import '../globals.dart' as globals;
+
 
 class ImagesScreen extends StatelessWidget with RouteAware {
   Widget makeImagesGrid() {
@@ -128,7 +130,7 @@ Future<void> _sendEmail(BuildContext context) async {
       return CupertinoAlertDialog(
         title: Text('"Are you sure you want to stich?'),
         content: Text(
-          'When you click allow, an email will be sent that starts thr process of stitching all your images at your lowest magnification',
+          'When you click allow, an email will be sent that starts the process of stitching all your images at your lowest magnification',
         ),
         actions: <Widget>[
           CupertinoDialogAction(
@@ -160,8 +162,8 @@ Future<void> _sendEmail(BuildContext context) async {
 Future<Null> sendEmail() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Email email = Email(
-    body: 'This is a test email',
-    subject: 'This is a test email',
+    body: '<root><patientID>${globals.patientID.text}</patientID><counter>${globals.noImages}</counter><name>${globals.name.text}</name><email>${globals.email.text}</email><hospital>${globals.hospital.text}</hospital></root>',
+    subject: 'IMAGE STITCHING REQUEST',
     recipients: ['pathomaticapp@gmail.com'],
     isHTML: false,
   );

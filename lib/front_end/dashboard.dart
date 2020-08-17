@@ -56,7 +56,7 @@ class _DashboardPageState extends State<DashboardPage> {
           ],
         ),
         body: Center(
-          child: Text(widget.data),
+          child: Text('Weclome ${widget.data}, to Pathomatic!'),
         ),
         floatingActionButton: FloatingActionButton.extended(
           elevation: 8.0,

@@ -197,7 +197,7 @@ class _CameraState extends State<Camera> {
                                 context,
                                 new MaterialPageRoute(
                                     builder: (context) =>
-                                        new DashboardPage(data: globals.patientIdentifier)));
+                                        new DashboardPage(data: globals.patientID.text)));
                           },
                         ),
                       ),
@@ -337,7 +337,7 @@ class _CameraState extends State<Camera> {
 
         (await getTemporaryDirectory()).path,
 
-        '${globals.patientIdentifier}${globals.noImages}.png',
+        '${globals.patientID.text}${globals.noImages}.png',
       );
 
       print(path);
