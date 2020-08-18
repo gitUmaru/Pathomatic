@@ -101,10 +101,12 @@ class _UploaderState extends State<Uploader> {
   /// Starts an upload task
   void _startUpload() {
     /// Unique file name for the file
-    String filePath = 'images/${globals.patientID.text}${globals.noImages}.png';
+    String filePath =
+        'images/${globals.patientID.text}${globals.model}${globals.noImages}.png';
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
+      globals.noImages += 1;
     });
   }
 
