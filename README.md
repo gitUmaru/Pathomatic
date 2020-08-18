@@ -1,3 +1,6 @@
+<img src="assets/images/InitialLogo.png" />
+
+
 # Detecting Regions of Cancer Using TensorFlow model on Android device
 
 AIPMOC stands for Artificial Intelligence in Precision Medicine for Ovarian Carcinoma. Within this project we are integrating a machine learning model that detects the boundaries of cancerous portions of a microscope image via camera input. We are deploying this model on an android application using a Flutter front end and TensorFlow lite back end. Ultimately, the goal of this project is to aid pathologists who don't have access to expensive lab equipment.
@@ -57,8 +60,10 @@ These additions should resemble the image in figure 2.
 Note that you have to close and reopen any existing console windows for these changes to take effect. All of these instructions were taken from the Flutter documentation, so if you encounter any issues please review those first before opening an issue.
 
 ## Results
-Currently, the front end is being developed and the back end (TensorFlow Lite is being developed). Due to the Covid-19 pandemic, the data acquisition has proved to be a huge bottle neck for this project. Hopefully, we can deliver some promising results soon.
+The app works well and so far includes the following features: welcome page to alert user of camera acess, information fields for image naming convention, main dashboard, image stitchign algorithim to digitall reconstruct entire microscope slides, YOLO + SSD pre-trained models (Will replace with Ovarian Cancer specific model soon), and lastly firebase upload for all images
 
+### Screenshots
+Under Construction...
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
