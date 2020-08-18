@@ -21,104 +21,129 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      // prevents the Android "Back" button from exiting app
-      onWillPop: () async => false,
-      child: new Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
-          centerTitle: true,
-          elevation: 5,
-          title: const Text('Dashboard'),
-          leading: IconButton(
-            icon: const Icon(Icons.check_circle_outline),
-            onPressed: () {},
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.filter),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/stichpage',
-                  arguments: 'none',
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.people_outline),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/patient',
-                  arguments: 'none',
-                );
-              },
-            ),
-          ],
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.lightBlue, Colors.white],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
         ),
-        body: Center(
-          child: Text('Weclome ${widget.data}, to Pathomatic!'),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          elevation: 8.0,
-          backgroundColor: Colors.lightBlue,
-          icon: const Icon(Icons.add),
-          label: const Text('Add a photo'),
-          onPressed: () {
-            _handlePhoto(context);
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.grey[200],
-          child: new Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              PopupMenuButton<String>(
-                icon: const Icon(Icons.save),
-                onSelected: choiceAction2,
-                itemBuilder: (BuildContext context) {
-                  return MoreConstants.choices2.map((String choice2) {
-                    return PopupMenuItem<String>(
-                      value: choice2,
-                      child: Text(choice2),
-                    );
-                  }).toList();
-                },
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 175, 0, 30),
+                child: Text(
+                  "Welcome, ${widget.data} \nPlease select an option:",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.start,
+                ),
               ),
-              PopupMenuButton<String>(
-                icon: const Icon(Icons.delete),
-                onSelected: choiceAction1,
-                itemBuilder: (BuildContext context) {
-                  return Constants.choices.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: Text(choice),
-                    );
-                  }).toList();
-                },
-              )
-            ],
-          ),
-        ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 160.0,
+                      height: 160.0,
+                      child: Card(
+                        color: Colors.blueGrey,
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0)),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              IconButton(
+                                iconSize: 60,
+                                icon: Icon(Icons.camera_alt),
+                                onPressed: () {
+                                  _handlePhoto(context);
+                                },
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                "Add Images",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "Step 1",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w100),
+                              )
+                            ],
+                          ),
+                        )),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 160.0,
+                      height: 160.0,
+                      child: Card(
+                        color: Colors.blueGrey,
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0)),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              IconButton(
+                                iconSize: 60,
+                                icon: Icon(Icons.filter),
+                                onPressed: () {
+                                  Navigator.of(context).pushNamed(
+                                    '/stichpage',
+                                    arguments: 'none',
+                                  );
+                                },
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                "Stich Images",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "Step 2",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w100),
+                              )
+                            ],
+                          ),
+                        )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
       ),
     );
-  }
-}
-
-void choiceAction1(String choice) {
-  if (choice == Constants.DeleteSelected) {
-    print('Delete Selected');
-  } else if (choice == Constants.DeleteAll) {
-    print('Delete All');
-  }
-}
-
-void choiceAction2(String choice2) {
-  if (choice2 == MoreConstants.SaveSelected) {
-    print('Save Selected');
-  } else if (choice2 == MoreConstants.SaveAll) {
-    print('Save All');
   }
 }
 
