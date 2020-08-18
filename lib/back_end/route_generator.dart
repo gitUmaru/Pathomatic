@@ -7,7 +7,6 @@ import './image_stitching/stitch.dart';
 
 import '../main.dart';
 import '../front_end/dashboard.dart';
-import 'patient_functionality/patient.dart';
 
 List<CameraDescription> cameras;
 
@@ -19,17 +18,6 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => MyApp());
-      case '/patient':
-        // Validation of correct data type
-        if (args is String) {
-          return MaterialPageRoute(
-            builder: (_) => PatientPage(
-              data: args,
-            ),
-          );
-        }
-        return _errorRoute();
-
       case '/dashboard':
         // Validation of correct data type
         if (args is String) {
