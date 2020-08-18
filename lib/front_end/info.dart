@@ -14,7 +14,6 @@ class PatientIdentifier extends StatefulWidget {
 }
 
 class _PatientIdentifierState extends State<PatientIdentifier> {
-
   @override
   void dispose() {
     globals.patientID.dispose();
@@ -50,7 +49,7 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
             Text(""),
             new Flexible(
                 child: new TextFormField(
-                    controller: globals.email,
+                    controller: globals.name,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your name',
                         fillColor: Colors.white,

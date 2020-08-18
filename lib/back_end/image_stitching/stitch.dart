@@ -6,7 +6,6 @@ import 'dart:typed_data';
 import 'dataholder.dart';
 import '../globals.dart' as globals;
 
-
 class ImagesScreen extends StatelessWidget with RouteAware {
   Widget makeImagesGrid() {
     return GridView.builder(
@@ -35,9 +34,7 @@ class ImagesScreen extends StatelessWidget with RouteAware {
         child: Row(
           children: [
             Spacer(),
-            IconButton(icon: Icon(Icons.save),
-             onPressed: () {
-            }),
+            IconButton(icon: Icon(Icons.save), onPressed: () {}),
           ],
         ),
       ),
@@ -75,8 +72,7 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
     if (!requestedIndexes.contains(widget._index)) {
       int maxSize = 7 * 1024 * 1024;
       photosReference
-      // TODO: We most likely change this with the patient id
-          .child("cell${widget._index}.png")
+          .child('${globals.patientID.text}${globals.noImages}.png')
           .getData(maxSize)
           .then((data) {
         this.setState(() {
@@ -121,7 +117,6 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
   }
 }
 
-
 Future<void> _sendEmail(BuildContext context) async {
   return showDialog<void>(
     context: context,
@@ -162,7 +157,8 @@ Future<void> _sendEmail(BuildContext context) async {
 Future<Null> sendEmail() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Email email = Email(
-    body: '<root><patientID>${globals.patientID.text}</patientID><counter>${globals.noImages}</counter><name>${globals.name.text}</name><email>${globals.email.text}</email><hospital>${globals.hospital.text}</hospital></root>',
+    body:
+        '<root><patientID>${globals.patientID.text}</patientID><counter>${globals.noImages}</counter><name>${globals.name.text}</name><email>${globals.email.text}</email><hospital>${globals.hospital.text}</hospital></root>',
     subject: 'IMAGE STITCHING REQUEST',
     recipients: ['pathomaticapp@gmail.com'],
     isHTML: false,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import './back_end/globals.dart' as globals;
 
 class PreviewImageScreen extends StatefulWidget {
   final String imagePath;
@@ -100,8 +101,7 @@ class _UploaderState extends State<Uploader> {
   /// Starts an upload task
   void _startUpload() {
     /// Unique file name for the file
-    String filePath =
-        'images/${DateTime.now()}.png'; // TODO: Change this to patient id
+    String filePath = 'images/${globals.patientID.text}${globals.noImages}.png';
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
