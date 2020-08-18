@@ -72,7 +72,8 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
     if (!requestedIndexes.contains(widget._index)) {
       int maxSize = 7 * 1024 * 1024;
       photosReference
-          .child('${globals.patientID.text}${globals.noImages}.png')
+          .child(
+              '${globals.patientID.text}${globals.model}${widget._index}.png')
           .getData(maxSize)
           .then((data) {
         this.setState(() {
@@ -123,9 +124,9 @@ Future<void> _sendEmail(BuildContext context) async {
     barrierDismissible: false,
     builder: (BuildContext context) {
       return CupertinoAlertDialog(
-        title: Text('"Are you sure you want to stich?'),
+        title: Text('Are you sure you want to stich these images?'),
         content: Text(
-          'When you click allow, an email will be sent that starts the process of stitching all your images at your lowest magnification',
+          'An email will be sent that starts the process of stitching all your images at your lowest magnification.',
         ),
         actions: <Widget>[
           CupertinoDialogAction(
