@@ -7,7 +7,6 @@ import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 import '../back_end/globals.dart' as globals;
 
-
 import '../preview_screen.dart';
 import './constants.dart';
 import 'models.dart';
@@ -196,8 +195,8 @@ class _CameraState extends State<Camera> {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) =>
-                                        new DashboardPage(data: globals.patientID.text)));
+                                    builder: (context) => new DashboardPage(
+                                        data: globals.name.text)));
                           },
                         ),
                       ),
@@ -294,7 +293,6 @@ class _CameraState extends State<Camera> {
     );
   }
 
-
   // TODO: Change this with code that acutally chnages the ML model
   void choiceAction3(String choice3) {
     setState(() {
@@ -329,7 +327,7 @@ class _CameraState extends State<Camera> {
 
     try {
       // Attempt to take a picture and log where it's been saved
-      globals.noImages = globals.noImages + 1;
+
       final path = join(
         // In this example, store the picture in the temp directory. Find
 
@@ -337,11 +335,11 @@ class _CameraState extends State<Camera> {
 
         (await getTemporaryDirectory()).path,
 
-        '${globals.patientID.text}${globals.noImages}.png',
+        '${DateTime.now()}.png',
       );
 
-      print(path);
-      print(globals.noImages);
+      // print(path);
+      // print(globals.noImages);
 
       await controller.takePicture(path);
 
