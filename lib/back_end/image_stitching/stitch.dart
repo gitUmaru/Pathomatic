@@ -162,7 +162,7 @@ Future<void> _sendEmail(BuildContext context) async {
 Future<Null> sendEmail() async {
   WidgetsFlutterBinding.ensureInitialized();
   final Email email = Email(
-    body: '<root><patientID>${globals.patientID.text}</patientID><counter>${globals.noImages}</counter><name>${globals.name.text}</name><email>${globals.email.text}</email><hospital>${globals.hospital.text}</hospital></root>',
+    body: '<root><patientID>${globals.patientID.text}</patientID><counter>${globals.noImages}</counter><model>${globals.model}</model><name>${globals.name.text}</name><email>${globals.email.text}</email><hospital>${globals.hospital.text}</hospital></root>',
     subject: 'IMAGE STITCHING REQUEST',
     recipients: ['pathomaticapp@gmail.com'],
     isHTML: false,

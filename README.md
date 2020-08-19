@@ -22,7 +22,7 @@ AIPMOC stands for Artificial Intelligence in Precision Medicine for Ovarian Carc
 
   * For other release channels, and older builds, see the SDK archive page.
 
-  * Extract the zip file and place the contained flutter in the desired installation location for the Flutter SDK (for example, C:\src\flutter; do not install Flutter in a directory like `C:\Program Files\` that requires elevated privileges).
+  * Extract the zip file and place the contained flutter in the desired installation location for the Flutter SDK (for example, `C:\src\flutter` do not install Flutter in a directory like `C:\Program Files\` that requires elevated privileges).
 
   * You are now ready to run Flutter commands in the Flutter Console!
 
