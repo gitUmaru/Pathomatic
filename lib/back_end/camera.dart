@@ -212,7 +212,6 @@ class _CameraState extends State<Camera> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      _cameraTogglesRowWidget(),
                       _mlTextWidget(),
                     ],
                   ),
@@ -274,46 +273,11 @@ class _CameraState extends State<Camera> {
 
   /// Display a row of toggle to select the camera (or a message if no camera is available).
 
-  Widget _cameraTogglesRowWidget() {
-    return PopupMenuButton<String>(
-      icon: const Icon(
-        Icons.zoom_in,
-        color: Colors.white,
-        size: 30,
-      ),
-      onSelected: choiceAction3,
-      itemBuilder: (BuildContext context) {
-        return MLConstants.choices3.map((String choice3) {
-          return PopupMenuItem<String>(
-            value: choice3,
-            child: Text(choice3),
-          );
-        }).toList();
-      },
-    );
-  }
-
-  // TODO: Change this with code that acutally chnages the ML model
-  void choiceAction3(String choice3) {
-    setState(() {
-      selectedChoice3 = choice3;
-    });
-    if (choice3 == MLConstants.FourX) {
-      print('4x');
-    } else if (choice3 == MLConstants.TenX) {
-      print('10x');
-    } else if (choice3 == MLConstants.TwentyFiveX) {
-      print('25x');
-    } else if (choice3 == MLConstants.FourtyX) {
-      print('40x');
-    } else if (choice3 == MLConstants.SixtyThreeX) {
-      print('63x');
-    }
-  }
-
   Widget _mlTextWidget() {
     return Container(
-        child: (Text("${selectedChoice3 ?? ''}",
+        padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+        // child: (Text("${globals.model}",
+        child: (Text("4x",
             style: TextStyle(
               fontSize: 13,
               color: Colors.white,
