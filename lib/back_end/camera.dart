@@ -276,7 +276,7 @@ class _CameraState extends State<Camera> {
   Widget _mlTextWidget() {
     return Container(
         padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-        // child: (Text("${globals.model}",
+        // child: (Text("${globals.model}",  // TODO: replace the line below with this once model variable shortened
         child: (Text("4x",
             style: TextStyle(
               fontSize: 13,
