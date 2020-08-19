@@ -21,12 +21,12 @@ class _WelcomePageState extends State<WelcomePage>
           child: new ListView(
             padding: const EdgeInsets.all(25),
             children: <Widget>[
-              SizedBox(height: 190.0),
+              SizedBox(height: 160.0),
               Column(
                 children: <Widget>[
                   Image.asset('assets/images/InitialLogo.png'),
                   SizedBox(
-                    height: 30.0,
+                    height: 60.0,
                   ),
                   new Container(
                       padding: (EdgeInsets.only(
@@ -50,34 +50,22 @@ class _WelcomePageState extends State<WelcomePage>
                                       textColor: Colors.white,
                                       color: Colors.lightBlue,
                                       padding: EdgeInsets.fromLTRB(5, 2, 5, 0),
-                                      child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Container(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    12, 4, 4, 4),
-                                                child: Text(
-                                                  'BEGIN',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 28),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    8, 0, 10, 0),
-                                                child: Icon(
-                                                  Icons.photo_camera,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Container(
+                                            padding: EdgeInsets.fromLTRB(
+                                                28, 4, 4, 4),
+                                            child: Text(
+                                              'BEGIN',
+                                              style: TextStyle(
                                                   color: Colors.white,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                            ],
-                                          ))))),
+                                                  fontSize: 28),
+                                            ),
+                                          ),
+                                        ],
+                                      )))),
                         ])),
                       ])),
                 ],
