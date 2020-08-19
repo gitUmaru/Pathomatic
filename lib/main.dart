@@ -13,6 +13,9 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage("assets/images/background.png"), context);
+    precacheImage(AssetImage("assets/images/InitialLogo.png"), context);
+    precacheImage(AssetImage("assets/images/crosshair.png"), context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pathomatic',
