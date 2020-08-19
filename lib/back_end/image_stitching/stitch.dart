@@ -6,7 +6,6 @@ import 'dart:typed_data';
 import 'dataholder.dart';
 import '../globals.dart' as globals;
 
-
 class ImagesScreen extends StatelessWidget with RouteAware {
   Widget makeImagesGrid() {
     return GridView.builder(
@@ -35,9 +34,7 @@ class ImagesScreen extends StatelessWidget with RouteAware {
         child: Row(
           children: [
             Spacer(),
-            IconButton(icon: Icon(Icons.save),
-             onPressed: () {
-            }),
+            IconButton(icon: Icon(Icons.save), onPressed: () {}),
           ],
         ),
       ),
@@ -75,8 +72,8 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
     if (!requestedIndexes.contains(widget._index)) {
       int maxSize = 7 * 1024 * 1024;
       photosReference
-      // TODO: We most likely change this with the patient id
-          .child("cell${widget._index}.png")
+          .child(
+              '${globals.patientID.text}${globals.model}${widget._index}.png')
           .getData(maxSize)
           .then((data) {
         this.setState(() {
@@ -121,16 +118,15 @@ class _ImageGridItemState extends State<ImageGridItem> with RouteAware {
   }
 }
 
-
 Future<void> _sendEmail(BuildContext context) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
       return CupertinoAlertDialog(
-        title: Text('"Are you sure you want to stich?'),
+        title: Text('Are you sure you want to stich these images?'),
         content: Text(
-          'When you click allow, an email will be sent that starts the process of stitching all your images at your lowest magnification',
+          'An email will be sent that starts the process of stitching all your images at your lowest magnification.',
         ),
         actions: <Widget>[
           CupertinoDialogAction(

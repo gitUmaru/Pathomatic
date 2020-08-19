@@ -14,7 +14,6 @@ class PatientIdentifier extends StatefulWidget {
 }
 
 class _PatientIdentifierState extends State<PatientIdentifier> {
-
   @override
   void dispose() {
     globals.patientID.dispose();
@@ -27,17 +26,21 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text('Unique Patient Identifier'),
+        backgroundColor: Colors.lightBlue,
+        centerTitle: true,
+        elevation: 5,
+        automaticallyImplyLeading: false,
+        title: Text('Identification'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 0, 16, 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Flexible(
-                child: new TextFormField(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                TextFormField(
                     controller: globals.patientID,
                     decoration: new InputDecoration(
                         labelText: 'Please enter a unique patient identifier',
@@ -45,23 +48,21 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
                         border: new OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(25.0),
                           borderSide: new BorderSide(),
-                        )))),
-            Text(""),
-            Text(""),
-            new Flexible(
-                child: new TextFormField(
-                    controller: globals.email,
+                        ))),
+                Text(""),
+                Text(""),
+                TextFormField(
+                    controller: globals.name,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your name',
                         fillColor: Colors.white,
                         border: new OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(25.0),
                           borderSide: new BorderSide(),
-                        )))),
-            Text(""),
-            Text(""),
-            new Flexible(
-                child: new TextFormField(
+                        ))),
+                Text(""),
+                Text(""),
+                TextFormField(
                     controller: globals.email,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your email',
@@ -69,11 +70,10 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
                         border: new OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(25.0),
                           borderSide: new BorderSide(),
-                        )))),
-            Text(""),
-            Text(""),
-            new Flexible(
-                child: new TextFormField(
+                        ))),
+                Text(""),
+                Text(""),
+                TextFormField(
                     controller: globals.hospital,
                     decoration: new InputDecoration(
                         labelText: 'Please enter your hospital',
@@ -81,18 +81,22 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
                         border: new OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(25.0),
                           borderSide: new BorderSide(),
-                        )))),
-            Text(""),
-            Text(""),
-            Text(
-              "Note that for every new patient will require you to restart the app and enter a new patient identifier.",
-              style: TextStyle(height: 1.5, fontSize: 15.0),
-              textAlign: TextAlign.center,
+                        ))),
+                Text(""),
+                Text(""),
+                Text(
+                  "Note that for every new patient you will be required to restart the app and enter a new patient identifier.",
+                  style: TextStyle(height: 1.5, fontSize: 14.0),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        elevation: 8.0,
+        backgroundColor: Colors.lightBlue,
         onPressed: () {
           Navigator.of(context).pushNamed(
             '/dashboard',
