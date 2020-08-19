@@ -81,6 +81,8 @@ class _PatientIdentifierState extends State<PatientIdentifier> {
                       validator: (text) {
                         if (text == null || text.isEmpty) {
                           return 'Email cannot be empty';
+                        } else if (!text.contains('@')) {
+                          return 'Invalid Email';
                         }
                         return null;
                       },
