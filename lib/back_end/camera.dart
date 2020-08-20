@@ -140,87 +140,91 @@ class _CameraState extends State<Camera> {
     var screenRatio = screenH / screenW;
     var previewRatio = previewH / previewW;
 
-    return Scaffold(
-      // appBar: AppBar(
-      //     backgroundColor: Colors.lightBlue,
-      //     centerTitle: true,
-      //     elevation: 5,
-      //     title: Text("Pathomatic")),
-      body: Container(
-        decoration: new BoxDecoration(color: Colors.black),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: new Stack(
-                  children: <Widget>[
-                    new Container(
-                      alignment: Alignment.center,
-                      child: _cameraPreviewWidget(context),
-                    ),
-                    new Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                          child: Stack(children: <Widget>[
-                            Positioned(
-                              top: yPosition,
-                              left: xPosition,
-                              child: Container(
-                                //padding: EdgeInsets.only(top: 200.0, left: 120.0),
-                                height: MediaQuery.of(context).size.height / 3,
-                                width: MediaQuery.of(context).size.width / 3,
-                                child:
-                                    Image.asset('assets/images/crosshair.png'),
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        // appBar: AppBar(
+        //     backgroundColor: Colors.lightBlue,
+        //     centerTitle: true,
+        //     elevation: 5,
+        //     title: Text("Pathomatic")),
+        body: Container(
+          decoration: new BoxDecoration(color: Colors.black),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: new Stack(
+                    children: <Widget>[
+                      new Container(
+                        alignment: Alignment.center,
+                        child: _cameraPreviewWidget(context),
+                      ),
+                      new Align(
+                        alignment: Alignment.center,
+                        child: GestureDetector(
+                            child: Stack(children: <Widget>[
+                              Positioned(
+                                top: yPosition,
+                                left: xPosition,
+                                child: Container(
+                                  //padding: EdgeInsets.only(top: 200.0, left: 120.0),
+                                  height:
+                                      MediaQuery.of(context).size.height / 3,
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  child: Image.asset(
+                                      'assets/images/crosshair.png'),
+                                ),
                               ),
-                            ),
-                          ]),
-                          onPanUpdate: (tapInfo) {
-                            setState(() {
-                              xPosition += tapInfo.delta.dx;
-                              yPosition += tapInfo.delta.dy;
-                            });
-                          }),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        child: IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          color: Colors.white,
-                          onPressed: () {
-                            //  DashboardPage(data: "none");
-                            Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => new DashboardPage(
-                                        data: globals.name.text)));
-                          },
+                            ]),
+                            onPanUpdate: (tapInfo) {
+                              setState(() {
+                                xPosition += tapInfo.delta.dx;
+                                yPosition += tapInfo.delta.dy;
+                              });
+                            }),
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                          child: IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            color: Colors.white,
+                            onPressed: () {
+                              //  DashboardPage(data: "none");
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => new DashboardPage(
+                                          data: globals.name.text)));
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 5),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      _mlTextWidget(),
                     ],
                   ),
-                  _captureControlRowWidget(context),
-                  SizedBox(width: 50),
-                ],
-              ),
-              SizedBox(height: 5),
-            ],
+                ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        _mlTextWidget(),
+                      ],
+                    ),
+                    _captureControlRowWidget(context),
+                    SizedBox(width: 50),
+                  ],
+                ),
+                SizedBox(height: 5),
+              ],
+            ),
           ),
         ),
       ),

@@ -75,124 +75,127 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
-    return Scaffold(
-      body: globals.model == ""
-          ? Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/background.png"),
-                  fit: BoxFit.cover,
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: globals.model == ""
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.png"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                child: Column(children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                    child: Text(
+                      "Select a magnification:",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(""),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("5x"),
+                          onPressed: () {
+                            onSelect(ssd);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("10x"),
+                          onPressed: () {
+                            onSelect(ssd);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("25x"),
+                          onPressed: () {
+                            onSelect(mobilenet);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("40x"),
+                          onPressed: () {
+                            onSelect(posenet);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("63x"),
+                          onPressed: () {
+                            onSelect(mobilenet);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        Text(""),
+                        Text(""),
+                        Text(""),
+                        Text(""),
+                        IconButton(
+                          iconSize: 50,
+                          icon: Icon(Icons.home),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              '/dashboard',
+                              arguments: globals.name.text,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
+              )
+            : Stack(
+                children: [
+                  Camera(
+                    widget.cameras,
+                    globals.model,
+                    setRecognitions,
+                  ),
+                  BndBox(
+                      _recognitions == null ? [] : _recognitions,
+                      math.max(_imageHeight, _imageWidth),
+                      math.min(_imageHeight, _imageWidth),
+                      screen.height,
+                      screen.width,
+                      globals.model),
+                ],
               ),
-              child: Column(children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
-                  child: Text(
-                    "Select a magnification:",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(""),
-                      RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.black,
-                        child: Text("5x"),
-                        onPressed: () {
-                          onSelect(ssd);
-                        },
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.black,
-                        child: Text("10x"),
-                        onPressed: () {
-                          onSelect(ssd);
-                        },
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.black,
-                        child: Text("25x"),
-                        onPressed: () {
-                          onSelect(mobilenet);
-                        },
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.black,
-                        child: Text("40x"),
-                        onPressed: () {
-                          onSelect(posenet);
-                        },
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.black,
-                        child: Text("63x"),
-                        onPressed: () {
-                          onSelect(mobilenet);
-                        },
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      Text(""),
-                      Text(""),
-                      Text(""),
-                      Text(""),
-                      IconButton(
-                        iconSize: 50,
-                        icon: Icon(Icons.home),
-                        color: Colors.white,
-                        onPressed: () {
-                          Navigator.of(context).pushNamed(
-                            '/dashboard',
-                            arguments: globals.name.text,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-            )
-          : Stack(
-              children: [
-                Camera(
-                  widget.cameras,
-                  globals.model,
-                  setRecognitions,
-                ),
-                BndBox(
-                    _recognitions == null ? [] : _recognitions,
-                    math.max(_imageHeight, _imageWidth),
-                    math.min(_imageHeight, _imageWidth),
-                    screen.height,
-                    screen.width,
-                    globals.model),
-              ],
-            ),
+      ),
     );
   }
 }

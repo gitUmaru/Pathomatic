@@ -21,127 +21,130 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.lightBlue, Colors.white],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter),
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.lightBlue, Colors.white],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter),
+          ),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30, 175, 0, 30),
+                  child: Text(
+                    "Welcome, ${widget.data} \nPlease select an option:",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 160.0,
+                        height: 160.0,
+                        child: Card(
+                          color: Colors.blueGrey,
+                          elevation: 2.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                IconButton(
+                                  iconSize: 60,
+                                  icon: Icon(Icons.camera_alt),
+                                  onPressed: () {
+                                    _handlePhoto(context);
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  "Add Images",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Step 1",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w100),
+                                )
+                              ],
+                            ),
+                          )),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 160.0,
+                        height: 160.0,
+                        child: Card(
+                          color: Colors.blueGrey,
+                          elevation: 2.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                IconButton(
+                                  iconSize: 60,
+                                  icon: Icon(Icons.filter),
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                      '/stichpage',
+                                      arguments: 'none',
+                                    );
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  "Stich Images",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Step 2",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w100),
+                                )
+                              ],
+                            ),
+                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
         ),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(30, 175, 0, 30),
-                child: Text(
-                  "Welcome, ${widget.data} \nPlease select an option:",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w600),
-                  textAlign: TextAlign.start,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 160.0,
-                      height: 160.0,
-                      child: Card(
-                        color: Colors.blueGrey,
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Center(
-                            child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: <Widget>[
-                              IconButton(
-                                iconSize: 60,
-                                icon: Icon(Icons.camera_alt),
-                                onPressed: () {
-                                  _handlePhoto(context);
-                                },
-                              ),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(
-                                "Add Images",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0),
-                              ),
-                              SizedBox(
-                                height: 5.0,
-                              ),
-                              Text(
-                                "Step 1",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w100),
-                              )
-                            ],
-                          ),
-                        )),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 160.0,
-                      height: 160.0,
-                      child: Card(
-                        color: Colors.blueGrey,
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Center(
-                            child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: <Widget>[
-                              IconButton(
-                                iconSize: 60,
-                                icon: Icon(Icons.filter),
-                                onPressed: () {
-                                  Navigator.of(context).pushNamed(
-                                    '/stichpage',
-                                    arguments: 'none',
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(
-                                "Stich Images",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0),
-                              ),
-                              SizedBox(
-                                height: 5.0,
-                              ),
-                              Text(
-                                "Step 2",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w100),
-                              )
-                            ],
-                          ),
-                        )),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
       ),
     );
   }
