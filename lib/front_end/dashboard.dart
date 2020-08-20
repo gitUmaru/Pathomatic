@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import '../back_end/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:async';
 import 'package:camera/camera.dart';
 import 'home.dart';
 
@@ -143,6 +145,41 @@ class _DashboardPageState extends State<DashboardPage> {
                     ],
                   ),
                 ),
+                Text(''),
+                Text(''),
+                Center(
+                    child: Container(
+                        width: 215,
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            onPressed: () => Phoenix.rebirth(context),
+                            textColor: Colors.white,
+                            color: Colors.blueGrey,
+                            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(8, 4, 4, 4),
+                                      child: Text(
+                                        'Restart with new patient',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                      child: Icon(
+                                        Icons.autorenew,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
+                                    ),
+                                  ],
+                                ))))),
               ]),
         ),
       ),

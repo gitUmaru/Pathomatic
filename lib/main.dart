@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import 'front_end/welcome.dart';
 import 'back_end/route_generator.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/widgets.dart';
 List<CameraDescription> cameras;
 // global RouteObserver
 final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
-void main() => runApp(MyApp());
+void main() => runApp(Phoenix(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   @override
