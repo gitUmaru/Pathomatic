@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
     switch (globals.model) {
       case yolo:
         res = await Tflite.loadModel(
-          model: "assets/model_unquant.tflite",
-          labels: "assets/labels.txt",
+          model: "assets/detect.tflite",
+          labels: "assets/detect.txt",
         );
         break;
 
