@@ -42,7 +42,7 @@ packages:
       name: camera
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.8+2"
+    version: "0.5.8+5"
   characters:
     dependency: transitive
     description:

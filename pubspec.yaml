@@ -26,7 +26,7 @@ dependencies:
     sdk: flutter
   tflite: 1.0.6
   animated_background: ^1.0.5
-  camera: ^0.5.2+1
+  camera: ^0.5.8+5
   path_provider: ^1.1.0
   path: ^1.6.2
   esys_flutter_share: ^1.0.2

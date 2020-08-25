@@ -1,14 +1,12 @@
 <img src="assets/images/InitialLogo.png" />
 
 
-# Detecting Regions of Cancer Using TensorFlow model on Android device
-
-AIPMOC stands for Artificial Intelligence in Precision Medicine for Ovarian Carcinoma. Within this project we are integrating a machine learning model that detects the boundaries of cancerous portions of a microscope image via camera input. We are deploying this model on an android application using a Flutter front end and TensorFlow lite back end. Ultimately, the goal of this project is to aid pathologists who don't have access to expensive lab equipment.
+Pathomatic is an app that detects regions of cancer using a tensorFlow model on Android devices. AIPMOC stands for Artificial Intelligence in Precision Medicine for Ovarian Carcinoma. Within this project we are integrating a machine learning model that detects the boundaries of cancerous portions of a microscope image via camera input. We are deploying this model on an android application using a Flutter front end and TensorFlow lite back end. The next step in this process is to digitally reconstruct the microscope slide using an image stitching algorithm. This process is accomplished by sending an email to a server which processes the request. The server returns the email with the stitched image in a .tiff file format. Ultimately, the goal of this project is to aid pathologists who don't have access to expensive slide scanners and allow lab technicians to capture relavant regions of image (ROI) without the constant intervention of a pathologist.
 
 ## Packages
 * Flutter
 * TensorFlow Lite
-* Android Studio
+* Microsoft Image Composite Editor
 
 ## Installation
 ### Windows
@@ -60,10 +58,18 @@ These additions should resemble the image in figure 2.
 Note that you have to close and reopen any existing console windows for these changes to take effect. All of these instructions were taken from the Flutter documentation, so if you encounter any issues please review those first before opening an issue.
 
 ## Results
-The app works well and so far includes the following features: welcome page to alert user of camera acess, information fields for image naming convention, main dashboard, image stitchign algorithim to digitall reconstruct entire microscope slides, YOLO + SSD pre-trained models (Will replace with Ovarian Cancer specific model soon), and lastly firebase upload for all images
+The app works well and so far includes the following features: welcome page to alert user of camera acess, information fields for image naming convention, main dashboard, image stitching algorithim to digitall reconstruct entire microscope slides, YOLO + SSD pre-trained models (Will replace with Ovarian Cancer specific model soon), and lastly firebase upload for all images
 
 ### Screenshots
-Under Construction...
+<p align="center">
+
+![](README_images\tfBoard_results.png)  |  ![](README_images\inference.PNG)
+:-------------------------:|:-------------------------:
+**Figure 3.1.** Tensorboard of training            |  **Figure 3.2.** Inference Results
+</p>
+
+
+Photos of Applications are coming soon, WIP.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
