@@ -63,7 +63,7 @@ The app works well and so far includes the following features: welcome page to a
 ### Screenshots
 <p align="center">
 
-![](README_images\tfBoard_results.png)  |  ![](README_images\inference.PNG)
+![](README_images/tfBoard_results.png)  |  ![](README_images/inference.PNG)
 :-------------------------:|:-------------------------:
 **Figure 3.1.** Tensorboard of training            |  **Figure 3.2.** Inference Results
 </p>
