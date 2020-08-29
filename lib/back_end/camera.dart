@@ -1,14 +1,9 @@
 import 'package:Pathomatic/front_end/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:tflite/tflite.dart';
-import 'dart:math' as math;
 import '../back_end/globals.dart' as globals;
 
-import '../preview_screen.dart';
-import './constants.dart';
 import 'models.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
@@ -131,14 +126,14 @@ class _CameraState extends State<Camera> {
       return Container();
     }
 
-    var tmp = MediaQuery.of(context).size;
-    var screenH = math.max(tmp.height, tmp.width);
-    var screenW = math.min(tmp.height, tmp.width);
-    tmp = controller.value.previewSize;
-    var previewH = math.max(tmp.height, tmp.width);
-    var previewW = math.min(tmp.height, tmp.width);
-    var screenRatio = screenH / screenW;
-    var previewRatio = previewH / previewW;
+    // var tmp = MediaQuery.of(context).size;
+    // var screenH = math.max(tmp.height, tmp.width);
+    // var screenW = math.min(tmp.height, tmp.width);
+    // tmp = controller.value.previewSize;
+    // var previewH = math.max(tmp.height, tmp.width);
+    // var previewW = math.min(tmp.height, tmp.width);
+    // var screenRatio = screenH / screenW;
+    // var previewRatio = previewH / previewW;
 
     return new WillPopScope(
       onWillPop: () async => false,
@@ -211,7 +206,8 @@ class _CameraState extends State<Camera> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: 
+                  [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -264,10 +260,12 @@ class _CameraState extends State<Camera> {
           mainAxisSize: MainAxisSize.max,
           children: [
             FloatingActionButton(
-                child: Icon(Icons.camera_alt),
+                child: Icon(Icons.arrow_forward),
                 backgroundColor: Colors.lightBlue,
                 onPressed: () {
-                  _onCapturePressed(context);
+                  Navigator.of(context).pushNamed(
+                '/camerapage',
+              );
                 })
           ],
         ),
@@ -288,41 +286,4 @@ class _CameraState extends State<Camera> {
             ))));
   }
 
-  void _onCapturePressed(context) async {
-    // Take the Picture in a try / catch block. If anything goes wrong,
-
-    // catch the error.
-
-    try {
-      // Attempt to take a picture and log where it's been saved
-
-      final path = join(
-        // In this example, store the picture in the temp directory. Find
-
-        // the temp directory using the `path_provider` plugin.
-
-        (await getTemporaryDirectory()).path,
-
-        '${DateTime.now()}.png',
-      );
-
-      // print(path);
-      // print(globals.noImages);
-
-      await controller.takePicture(path);
-
-      // If the picture was taken, display it on a new screen
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PreviewImageScreen(imagePath: path),
-        ),
-      );
-    } catch (e) {
-      // If an error occurs, log the error to the console.
-
-      print(e);
-    }
-  }
 }
