@@ -107,9 +107,9 @@ class _HomePageState extends State<HomePage> {
                         RaisedButton(
                           textColor: Colors.white,
                           color: Colors.black,
-                          child: Text("5x"),
+                          child: Text("4x"),
                           onPressed: () {
-                            onSelect(ssd);
+                            onSelect(yolo);
                           },
                           shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(30.0),

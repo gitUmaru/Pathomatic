@@ -154,7 +154,9 @@ class _DashboardPageState extends State<DashboardPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0))),
-                            onPressed: () => Phoenix.rebirth(context),
+                            onPressed: () { 
+                              Phoenix.rebirth(context);
+                            },
                             textColor: Colors.white,
                             color: Colors.blueGrey,
                             padding: EdgeInsets.fromLTRB(5, 0, 5, 0),

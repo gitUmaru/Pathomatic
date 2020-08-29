@@ -16,14 +16,14 @@ class PatientIdentifier extends StatefulWidget {
 class _PatientIdentifierState extends State<PatientIdentifier> {
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  void dispose() {
-    globals.patientID.dispose();
-    globals.email.dispose();
-    globals.name.dispose();
-    globals.hospital.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   globals.patientID.dispose();
+  //   globals.email.dispose();
+  //   globals.name.dispose();
+  //   globals.hospital.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
