@@ -7,8 +7,7 @@ import 'back_end/route_generator.dart';
 import 'package:flutter/widgets.dart';
 
 List<CameraDescription> cameras;
-// global RouteObserver
-final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
+
 void main() => runApp(Phoenix(child: MyApp()));
 
 class MyApp extends StatelessWidget {
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pathomatic',
-      navigatorObservers: <NavigatorObserver>[routeObserver],
       home: WelcomePage(),
       // Initially display WelcomePage
       initialRoute: '/',
