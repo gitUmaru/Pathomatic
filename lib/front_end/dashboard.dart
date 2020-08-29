@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import '../back_end/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:async';
 import 'package:camera/camera.dart';
 import 'home.dart';
 
@@ -21,95 +23,169 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      // prevents the Android "Back" button from exiting app
+    return new WillPopScope(
       onWillPop: () async => false,
-      child: new Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
-          centerTitle: true,
-          elevation: 5,
-          title: const Text('Dashboard'),
-          leading: IconButton(
-            icon: const Icon(Icons.check_circle_outline),
-            onPressed: () {},
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.lightBlue, Colors.white],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter),
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.people_outline),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/patient',
-                  arguments: 'none',
-                );
-              },
-            ),
-          ],
-        ),
-        body: Center(
-          child: Text(widget.data),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          elevation: 8.0,
-          backgroundColor: Colors.lightBlue,
-          icon: const Icon(Icons.add),
-          label: const Text('Add a photo'),
-          onPressed: () {
-            _handlePhoto(context);
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.grey[200],
-          child: new Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              PopupMenuButton<String>(
-                icon: const Icon(Icons.save),
-                onSelected: choiceAction2,
-                itemBuilder: (BuildContext context) {
-                  return MoreConstants.choices2.map((String choice2) {
-                    return PopupMenuItem<String>(
-                      value: choice2,
-                      child: Text(choice2),
-                    );
-                  }).toList();
-                },
-              ),
-              PopupMenuButton<String>(
-                icon: const Icon(Icons.delete),
-                onSelected: choiceAction1,
-                itemBuilder: (BuildContext context) {
-                  return Constants.choices.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: Text(choice),
-                    );
-                  }).toList();
-                },
-              )
-            ],
-          ),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30, 175, 0, 30),
+                  child: Text(
+                    "Welcome, ${widget.data} \nPlease select an option:",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 160.0,
+                        height: 160.0,
+                        child: Card(
+                          color: Colors.blueGrey,
+                          elevation: 2.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                IconButton(
+                                  iconSize: 60,
+                                  icon: Icon(Icons.camera_alt),
+                                  onPressed: () {
+                                    _handlePhoto(context);
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  "Add Images",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Step 1",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w100),
+                                )
+                              ],
+                            ),
+                          )),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 160.0,
+                        height: 160.0,
+                        child: Card(
+                          color: Colors.blueGrey,
+                          elevation: 2.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                IconButton(
+                                  iconSize: 60,
+                                  icon: Icon(Icons.filter),
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                      '/stichpage',
+                                      arguments: 'none',
+                                    );
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  "Stich Images",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Step 2",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w100),
+                                )
+                              ],
+                            ),
+                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Text(''),
+                Text(''),
+                Center(
+                    child: Container(
+                        width: 215,
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            onPressed: () { 
+                              Phoenix.rebirth(context);
+                            },
+                            textColor: Colors.white,
+                            color: Colors.blueGrey,
+                            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(8, 4, 4, 4),
+                                      child: Text(
+                                        'Restart with new patient',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                      child: Icon(
+                                        Icons.autorenew,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
+                                    ),
+                                  ],
+                                ))))),
+              ]),
         ),
       ),
     );
-  }
-}
-
-void choiceAction1(String choice) {
-  if (choice == Constants.DeleteSelected) {
-    print('Delete Selected');
-  } else if (choice == Constants.DeleteAll) {
-    print('Delete All');
-  }
-}
-
-void choiceAction2(String choice2) {
-  if (choice2 == MoreConstants.SaveSelected) {
-    print('Save Selected');
-  } else if (choice2 == MoreConstants.SaveAll) {
-    print('Save All');
   }
 }
 
@@ -127,8 +203,8 @@ Future<void> _handlePhoto(BuildContext context) {
             child: Text('OK'),
             onPressed: () {
               Navigator.of(context).pushNamed(
-                  '/homepage',
-                  arguments: 'none',
+                '/homepage',
+                arguments: 'none',
               );
             },
           ),

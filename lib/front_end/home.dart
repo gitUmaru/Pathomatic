@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import '../back_end/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
+import '../back_end/globals.dart' as globals;
 
 import '../back_end/bndbox.dart';
 import '../back_end/models.dart';
@@ -21,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   List<dynamic> _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
-  String _model = "";
 
   @override
   void initState() {
@@ -30,11 +30,11 @@ class _HomePageState extends State<HomePage> {
 
   loadModel() async {
     String res;
-    switch (_model) {
+    switch (globals.model) {
       case yolo:
         res = await Tflite.loadModel(
-          model: "assets/model_unquant.tflite",
-          labels: "assets/labels.txt",
+          model: "assets/detect.tflite",
+          labels: "assets/detect.txt",
         );
         break;
 
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
 
   onSelect(model) {
     setState(() {
-      _model = model;
+      globals.model = model;
     });
     loadModel();
   }
@@ -75,60 +75,127 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
-    return Scaffold(
-      body: _model == ""
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    child: const Text('4x Magnification'),
-                    onPressed: () => onSelect(ssd),
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: globals.model == ""
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.png"),
+                    fit: BoxFit.cover,
                   ),
-                  RaisedButton(
-                    child: const Text('10x Magnification'),
-                    onPressed: () => onSelect(ssd),
+                ),
+                child: Column(children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                    child: Text(
+                      "Select a magnification:",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
-                  RaisedButton(
-                    child: const Text('25x Magnification'),
-                    onPressed: () => onSelect(mobilenet),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(""),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("4x"),
+                          onPressed: () {
+                            onSelect(yolo);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("10x"),
+                          onPressed: () {
+                            onSelect(ssd);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("25x"),
+                          onPressed: () {
+                            onSelect(mobilenet);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("40x"),
+                          onPressed: () {
+                            onSelect(posenet);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.black,
+                          child: Text("63x"),
+                          onPressed: () {
+                            onSelect(mobilenet);
+                          },
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        Text(""),
+                        Text(""),
+                        Text(""),
+                        Text(""),
+                        IconButton(
+                          iconSize: 50,
+                          icon: Icon(Icons.home),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              '/dashboard',
+                              arguments: globals.name.text,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                  RaisedButton(
-                    child: const Text('40x Magnification'),
-                    onPressed: () => onSelect(posenet),
+                ]),
+              )
+            : Stack(
+                children: [
+                  Camera(
+                    widget.cameras,
+                    globals.model,
+                    setRecognitions,
                   ),
-                  RaisedButton(
-                    child: const Text('63x Magnification'),
-                    onPressed: () => onSelect(mobilenet),
-                  ),
-                   RaisedButton(
-                    child: const Text('Home'),
-                    onPressed: (){
-                      Navigator.of(context).pushNamed(
-                        '/dashboard',
-                        arguments: 'none',
-                      );
-                    },
-                  ),
+                  BndBox(
+                      _recognitions == null ? [] : _recognitions,
+                      math.max(_imageHeight, _imageWidth),
+                      math.min(_imageHeight, _imageWidth),
+                      screen.height,
+                      screen.width,
+                      globals.model),
                 ],
               ),
-            )
-          : Stack(
-              children: [
-                Camera(
-                  widget.cameras,
-                  _model,
-                  setRecognitions,
-                ),
-                BndBox(
-                    _recognitions == null ? [] : _recognitions,
-                    math.max(_imageHeight, _imageWidth),
-                    math.min(_imageHeight, _imageWidth),
-                    screen.height,
-                    screen.width,
-                    _model),
-              ],
-            ),
+      ),
     );
   }
 }

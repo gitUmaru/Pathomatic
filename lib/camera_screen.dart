@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import './preview_screen.dart';
 
 import './back_end/constants.dart';
+// import './back_end/globals.dart' as globals;
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -86,7 +87,19 @@ class _CameraScreenState extends State {
           backgroundColor: Colors.lightBlue,
           centerTitle: true,
           elevation: 5,
-          title: Text("Pathomatic")),
+          title: Text("Pathomatic"),
+          automaticallyImplyLeading: false,
+          leading:
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/homepage',
+                  arguments: 'none',
+                );},
+              )
+           ),
       body: Container(
         decoration: new BoxDecoration(color: Colors.black),
         child: SafeArea(

@@ -1,16 +1,9 @@
 import 'package:Pathomatic/front_end/dashboard.dart';
-import 'package:Pathomatic/front_end/getPatientIdentifier.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:tflite/tflite.dart';
-import 'dart:math' as math;
 import '../back_end/globals.dart' as globals;
 
-
-import '../preview_screen.dart';
-import './constants.dart';
 import 'models.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
@@ -133,97 +126,101 @@ class _CameraState extends State<Camera> {
       return Container();
     }
 
-    var tmp = MediaQuery.of(context).size;
-    var screenH = math.max(tmp.height, tmp.width);
-    var screenW = math.min(tmp.height, tmp.width);
-    tmp = controller.value.previewSize;
-    var previewH = math.max(tmp.height, tmp.width);
-    var previewW = math.min(tmp.height, tmp.width);
-    var screenRatio = screenH / screenW;
-    var previewRatio = previewH / previewW;
+    // var tmp = MediaQuery.of(context).size;
+    // var screenH = math.max(tmp.height, tmp.width);
+    // var screenW = math.min(tmp.height, tmp.width);
+    // tmp = controller.value.previewSize;
+    // var previewH = math.max(tmp.height, tmp.width);
+    // var previewW = math.min(tmp.height, tmp.width);
+    // var screenRatio = screenH / screenW;
+    // var previewRatio = previewH / previewW;
 
-    return Scaffold(
-      // appBar: AppBar(
-      //     backgroundColor: Colors.lightBlue,
-      //     centerTitle: true,
-      //     elevation: 5,
-      //     title: Text("Pathomatic")),
-      body: Container(
-        decoration: new BoxDecoration(color: Colors.black),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: new Stack(
-                  children: <Widget>[
-                    new Container(
-                      alignment: Alignment.center,
-                      child: _cameraPreviewWidget(context),
-                    ),
-                    new Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                          child: Stack(children: <Widget>[
-                            Positioned(
-                              top: yPosition,
-                              left: xPosition,
-                              child: Container(
-                                //padding: EdgeInsets.only(top: 200.0, left: 120.0),
-                                height: MediaQuery.of(context).size.height / 3,
-                                width: MediaQuery.of(context).size.width / 3,
-                                child:
-                                    Image.asset('assets/images/crosshair.png'),
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        // appBar: AppBar(
+        //     backgroundColor: Colors.lightBlue,
+        //     centerTitle: true,
+        //     elevation: 5,
+        //     title: Text("Pathomatic")),
+        body: Container(
+          decoration: new BoxDecoration(color: Colors.black),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: new Stack(
+                    children: <Widget>[
+                      new Container(
+                        alignment: Alignment.center,
+                        child: _cameraPreviewWidget(context),
+                      ),
+                      new Align(
+                        alignment: Alignment.center,
+                        child: GestureDetector(
+                            child: Stack(children: <Widget>[
+                              Positioned(
+                                top: yPosition,
+                                left: xPosition,
+                                child: Container(
+                                  //padding: EdgeInsets.only(top: 200.0, left: 120.0),
+                                  height:
+                                      MediaQuery.of(context).size.height / 3,
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  child: Image.asset(
+                                      'assets/images/crosshair.png'),
+                                ),
                               ),
-                            ),
-                          ]),
-                          onPanUpdate: (tapInfo) {
-                            setState(() {
-                              xPosition += tapInfo.delta.dx;
-                              yPosition += tapInfo.delta.dy;
-                            });
-                          }),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        child: IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          color: Colors.white,
-                          onPressed: () {
-                            //  DashboardPage(data: "none");
-                            Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) =>
-                                        new DashboardPage(data: globals.patientIdentifier)));
-                          },
+                            ]),
+                            onPanUpdate: (tapInfo) {
+                              setState(() {
+                                xPosition += tapInfo.delta.dx;
+                                yPosition += tapInfo.delta.dy;
+                              });
+                            }),
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                          child: IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            color: Colors.white,
+                            onPressed: () {
+                              //  DashboardPage(data: "none");
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => new DashboardPage(
+                                          data: globals.name.text)));
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 5),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      _cameraTogglesRowWidget(),
-                      _mlTextWidget(),
                     ],
                   ),
-                  _captureControlRowWidget(context),
-                  SizedBox(width: 50),
-                ],
-              ),
-              SizedBox(height: 5),
-            ],
+                ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: 
+                  [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        _mlTextWidget(),
+                      ],
+                    ),
+                    _captureControlRowWidget(context),
+                    SizedBox(width: 50),
+                  ],
+                ),
+                SizedBox(height: 5),
+              ],
+            ),
           ),
         ),
       ),
@@ -263,10 +260,12 @@ class _CameraState extends State<Camera> {
           mainAxisSize: MainAxisSize.max,
           children: [
             FloatingActionButton(
-                child: Icon(Icons.camera_alt),
+                child: Icon(Icons.arrow_forward),
                 backgroundColor: Colors.lightBlue,
                 onPressed: () {
-                  _onCapturePressed(context);
+                  Navigator.of(context).pushNamed(
+                '/camerapage',
+              );
                 })
           ],
         ),
@@ -276,95 +275,15 @@ class _CameraState extends State<Camera> {
 
   /// Display a row of toggle to select the camera (or a message if no camera is available).
 
-  Widget _cameraTogglesRowWidget() {
-    return PopupMenuButton<String>(
-      icon: const Icon(
-        Icons.zoom_in,
-        color: Colors.white,
-        size: 30,
-      ),
-      onSelected: choiceAction3,
-      itemBuilder: (BuildContext context) {
-        return MLConstants.choices3.map((String choice3) {
-          return PopupMenuItem<String>(
-            value: choice3,
-            child: Text(choice3),
-          );
-        }).toList();
-      },
-    );
-  }
-
-  void choiceAction3(String choice3) {
-    setState(() {
-      selectedChoice3 = choice3;
-    });
-    if (choice3 == MLConstants.FourX) {
-      print('4x');
-    } else if (choice3 == MLConstants.TenX) {
-      print('10x');
-    } else if (choice3 == MLConstants.TwentyFiveX) {
-      print('25x');
-    } else if (choice3 == MLConstants.FourtyX) {
-      print('40x');
-    } else if (choice3 == MLConstants.SixtyThreeX) {
-      print('63x');
-    }
-  }
-
   Widget _mlTextWidget() {
     return Container(
-        child: (Text("${selectedChoice3 ?? ''}",
+        padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+        // child: (Text("${globals.model}",  // TODO: replace the line below with this once model variable shortened
+        child: (Text("4x",
             style: TextStyle(
               fontSize: 13,
               color: Colors.white,
             ))));
   }
 
-  void _onCapturePressed(context) async {
-    // Take the Picture in a try / catch block. If anything goes wrong,
-
-    // catch the error.
-
-    try {
-      // Attempt to take a picture and log where it's been saved
-
-      final path = join(
-        // In this example, store the picture in the temp directory. Find
-
-        // the temp directory using the `path_provider` plugin.
-
-        (await getTemporaryDirectory()).path,
-
-        '${DateTime.now()}.png',
-      );
-
-      print(path);
-
-      await controller.takePicture(path);
-
-      // If the picture was taken, display it on a new screen
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PreviewImageScreen(imagePath: path),
-        ),
-      );
-    } catch (e) {
-      // If an error occurs, log the error to the console.
-
-      print(e);
-    }
-  }
-
-  // CAMERA EXCEPTION METHOD
-
-  // void _showCameraException(CameraException e) {
-  //   String errorText = 'Error: ${e.code}\nError Message: ${e.description}';
-
-  //   print(errorText);
-
-  //   print('Error: ${e.code}\n${e.description}');
-  // }
 }

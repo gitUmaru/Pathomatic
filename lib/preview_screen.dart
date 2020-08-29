@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import './back_end/globals.dart' as globals;
 
 class PreviewImageScreen extends StatefulWidget {
   final String imagePath;
@@ -76,7 +77,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
   }
 
   Future<ByteData> getBytesFromFile() async {
-    Uint8List bytes = File(widget.imagePath).readAsBytesSync() as Uint8List;
+    Uint8List bytes = File(widget.imagePath).readAsBytesSync();
 
     return ByteData.view(bytes.buffer);
   }
@@ -100,10 +101,12 @@ class _UploaderState extends State<Uploader> {
   /// Starts an upload task
   void _startUpload() {
     /// Unique file name for the file
-    String filePath = 'images/${DateTime.now()}.png';
+    String filePath =
+        'images/${globals.patientID.text}${globals.model}${globals.noImages}.png';
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
+      globals.noImages += 1;
     });
   }
 
