@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import '../back_end/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
