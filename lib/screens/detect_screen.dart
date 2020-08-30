@@ -6,6 +6,8 @@ import 'package:Pathomatic/helpers/app_helper.dart';
 import 'package:Pathomatic/helpers/camera_helper.dart';
 import 'package:Pathomatic/helpers/tflite_helper.dart';
 import 'package:Pathomatic/models/result.dart';
+import '../front_end/dashboard.dart';
+import '../back_end/globals.dart' as globals;
 
 class DetectScreen extends StatefulWidget {
   DetectScreen({Key key, this.title}) : super(key: key);
@@ -20,6 +22,9 @@ class _DetectScreenPageState extends State<DetectScreen>
     with TickerProviderStateMixin {
   AnimationController _colorAnimController;
   Animation _colorTween;
+
+  double xPosition = 120;
+  double yPosition = 150;
 
   List<Result> outputs;
 
@@ -40,25 +45,26 @@ class _DetectScreenPageState extends State<DetectScreen>
     _setupAnimation();
 
     //Subscribe to TFLite's Classify events
-    TFLiteHelper.tfLiteResultsController.stream.listen((value) {
-      value.forEach((element) {
-        _colorAnimController.animateTo(element.confidence,
-            curve: Curves.bounceIn, duration: Duration(milliseconds: 500));
-      });
+    TFLiteHelper.tfLiteResultsController.stream.listen(
+        (value) {
+          value.forEach((element) {
+            _colorAnimController.animateTo(element.confidence,
+                curve: Curves.bounceIn, duration: Duration(milliseconds: 500));
+          });
 
-      //Set Results
-      outputs = value;
+          //Set Results
+          outputs = value;
 
-      //Update results on screen
-      setState(() {
-        //Set bit to false to allow detection again
-        CameraHelper.isDetecting = false;
-      });
-    }, onDone: () {
-
-    }, onError: (error) {
-      AppHelper.log("listen", error);
-    });
+          //Update results on screen
+          setState(() {
+            //Set bit to false to allow detection again
+            CameraHelper.isDetecting = false;
+          });
+        },
+        onDone: () {},
+        onError: (error) {
+          AppHelper.log("listen", error);
+        });
   }
 
   @override
@@ -76,7 +82,29 @@ class _DetectScreenPageState extends State<DetectScreen>
             return Stack(
               children: <Widget>[
                 CameraPreview(CameraHelper.camera),
-                _buildResultsWidget(width, outputs)
+                _buildResultsWidget(width, outputs),
+                new Align(
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                      child: Stack(children: <Widget>[
+                        Positioned(
+                          top: yPosition,
+                          left: xPosition,
+                          child: Container(
+                            //padding: EdgeInsets.only(top: 200.0, left: 120.0),
+                            height: MediaQuery.of(context).size.height / 3,
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Image.asset('assets/images/crosshair.png'),
+                          ),
+                        ),
+                      ]),
+                      onPanUpdate: (tapInfo) {
+                        setState(() {
+                          xPosition += tapInfo.delta.dx;
+                          yPosition += tapInfo.delta.dy;
+                        });
+                      }),
+                ),
               ],
             );
           } else {
@@ -134,7 +162,7 @@ class _DetectScreenPageState extends State<DetectScreen>
                             fontSize: 16.0,
                           ),
                         ),
-                        child: Padding(
+                        Padding(
                           padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                           child: IconButton(
                             icon: Icon(Icons.arrow_back),
@@ -148,7 +176,7 @@ class _DetectScreenPageState extends State<DetectScreen>
                                           data: globals.name.text)));
                             },
                           ),
-                        )
+                        ),
                       ],
                     );
                   })
