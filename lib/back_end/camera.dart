@@ -92,13 +92,11 @@ class _CameraState extends State<Camera> {
                 bytesList: img.planes.map((plane) {
                   return plane.bytes;
                 }).toList(),
-                model: widget.model == yolo ? "YOLO" : "SSDMobileNet",
+                model: widget.model,
                 imageHeight: img.height,
                 imageWidth: img.width,
-                imageMean: widget.model == yolo ? 0 : 127.5,
-                imageStd: widget.model == yolo ? 255.0 : 127.5,
                 numResultsPerClass: 1,
-                threshold: widget.model == yolo ? 0.2 : 0.4,
+                threshold: 0.2,
               ).then((recognitions) {
                 int endTime = new DateTime.now().millisecondsSinceEpoch;
                 print("Detection took ${endTime - startTime}");

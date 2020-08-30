@@ -203,8 +203,8 @@ Future<void> _handlePhoto(BuildContext context) {
             child: Text('OK'),
             onPressed: () {
               Navigator.of(context).pushNamed(
-                '/homepage',
-                arguments: 'none',
+                '/detect',
+                arguments: 'Detect Tumour',
               );
             },
           ),

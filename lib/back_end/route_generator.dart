@@ -1,5 +1,6 @@
 import 'package:Pathomatic/camera_screen.dart';
 import 'package:Pathomatic/front_end/info.dart';
+import 'package:Pathomatic/screens/detect_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Pathomatic/front_end/home.dart';
 import 'package:camera/camera.dart';
@@ -49,6 +50,14 @@ class RouteGenerator {
         // Validation of correct data type
         return MaterialPageRoute(
           builder: (_) => CameraScreen(),
+        );
+        
+      case '/detect':
+        // Validation of correct data type
+        return MaterialPageRoute(
+          builder: (_) => DetectScreen(
+              title: args,
+          ),
         );
 
       case '/patientidentifier':

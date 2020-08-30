@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import 'front_end/welcome.dart';
@@ -13,6 +14,10 @@ void main() => runApp(Phoenix(child: MyApp()));
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+        SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     precacheImage(AssetImage("assets/images/background.png"), context);
     precacheImage(AssetImage("assets/images/InitialLogo.png"), context);
     precacheImage(AssetImage("assets/images/crosshair.png"), context);

@@ -1,0 +1,2 @@
+0 tumour
+1 stroma
