@@ -73,6 +73,19 @@ class _DetectScreenPageState extends State<DetectScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),), 
+        actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.arrow_forward),
+              onPressed: () {
+                  Navigator.of(context).pushNamed(
+                '/camerapage',
+               );
+              },
+            ),
+          ],
       ),
       body: FutureBuilder<void>(
         future: CameraHelper.initializeControllerFuture,
@@ -116,22 +129,22 @@ class _DetectScreenPageState extends State<DetectScreen>
     );
   }
 
-  @override
-  void dispose() {
-    TFLiteHelper.disposeModel();
-    CameraHelper.camera.dispose();
-    AppHelper.log("dispose", "Clear resources.");
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   TFLiteHelper.disposeModel();
+  //   CameraHelper.camera.dispose();
+  //   AppHelper.log("dispose", "Clear resources.");
+  //   super.dispose();
+  // }
 
   Widget _buildResultsWidget(double width, List<Result> outputs) {
     return Positioned.fill(
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          height: 200.0,
+          height: 100.0,
           width: width,
-          color: Colors.white,
+          color: Colors.white.withOpacity(0.0),
           child: outputs != null && outputs.isNotEmpty
               ? ListView.builder(
                   itemCount: outputs.length,

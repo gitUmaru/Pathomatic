@@ -121,7 +121,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   height: 10.0,
                                 ),
                                 Text(
-                                  "Stich Images",
+                                  "Stitch Images",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

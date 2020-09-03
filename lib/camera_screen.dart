@@ -94,10 +94,8 @@ class _CameraScreenState extends State {
               icon: Icon(Icons.arrow_back),
               color: Colors.white,
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/homepage',
-                  arguments: 'none',
-                );},
+                Navigator.of(context).pop();
+                },
               )
            ),
       body: Container(
@@ -114,29 +112,29 @@ class _CameraScreenState extends State {
                       alignment: Alignment.center,
                       child: _cameraPreviewWidget(context),
                     ),
-                    new Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                          child: Stack(children: <Widget>[
-                            Positioned(
-                              top: yPosition,
-                              left: xPosition,
-                              child: Container(
-                                // padding: EdgeInsets.only(top: 200.0, left: 20.0),
-                                height: MediaQuery.of(context).size.height / 3,
-                                width: MediaQuery.of(context).size.width / 3,
-                                child:
-                                    Image.asset('assets/images/crosshair.png'),
-                              ),
-                            ),
-                          ]),
-                          onPanUpdate: (tapInfo) {
-                            setState(() {
-                              xPosition += tapInfo.delta.dx;
-                              yPosition += tapInfo.delta.dy;
-                            });
-                          }),
-                    ),
+                    // new Align(
+                    //   alignment: Alignment.center,
+                    //   child: GestureDetector(
+                    //       child: Stack(children: <Widget>[
+                    //         Positioned(
+                    //           top: yPosition,
+                    //           left: xPosition,
+                    //           child: Container(
+                    //             // padding: EdgeInsets.only(top: 200.0, left: 20.0),
+                    //             height: MediaQuery.of(context).size.height / 3,
+                    //             width: MediaQuery.of(context).size.width / 3,
+                    //             child:
+                    //                 Image.asset('assets/images/crosshair.png'),
+                    //           ),
+                    //         ),
+                    //       ]),
+                    //       onPanUpdate: (tapInfo) {
+                    //         setState(() {
+                    //           xPosition += tapInfo.delta.dx;
+                    //           yPosition += tapInfo.delta.dy;
+                    //         });
+                    //       }),
+                    // ),
                   ],
                 ),
               ),

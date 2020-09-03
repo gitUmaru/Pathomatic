@@ -24,6 +24,9 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
       appBar: AppBar(
         title: Text('Preview'),
         centerTitle: true,
+        leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => Navigator.of(context).pop(),),
         elevation: 5,
         backgroundColor: Colors.lightBlue,
       ),
