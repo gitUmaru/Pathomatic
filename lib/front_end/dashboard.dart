@@ -222,16 +222,3 @@ Future<Null> cameraPage() async {
   }
   runApp(new CameraApp());
 }
-
-class CameraApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'tflite real-time detection',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      home: HomePage(cameras),
-    );
-  }
-}
